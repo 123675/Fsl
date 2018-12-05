@@ -339,6 +339,7 @@ class Algorithm():
         # filter out the networks that are not trainable and that do
         # not have a learning rate Look Up Table (LUT_lr) in their optim_params
         optim_params_filtered = {k:v for k,v in list(self.optim_params.items())
+        print("############################ in adjust learning rates optim_params_filtered = ", optim_params_fitered)
             if (v != None and ('LUT_lr' in v))}
 
         for key, oparams in list(optim_params_filtered.items()):

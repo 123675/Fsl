@@ -73,6 +73,8 @@ dataset_train = MiniImageNet(phase=train_split)
 dataset_test = MiniImageNet(phase=test_split)
 
 #print("###################################dataset train = ", dataset_train.data.shape)  (38400,84,84,3)
+
+print("######################3dataset = ", dataset_train)
 dloader_train = FewShotDataloader(
     dataset=dataset_train,
     nKnovel=data_train_opt['nKnovel'],
@@ -98,6 +100,7 @@ dloader_test = FewShotDataloader(
 )
 
 config['disp_step'] = args_opt.disp_step
+print("#################################################initialize fewshot class with parameters = ", config)
 algorithm = alg.FewShot(config)
 if args_opt.cuda: # enable cuda
     algorithm.load_to_gpu()
