@@ -23,9 +23,8 @@ from PIL import ImageEnhance
 
 from pdb import set_trace as breakpoint
 
-
 # Set the appropriate paths of the datasets here.
-_MINI_IMAGENET_DATASET_DIR = './datasets/MiniImagenet'
+_MINI_IMAGENET_DATASET_DIR = '../datasets/MiniImagenet'
 _IMAGENET_DATASET_DIR = './datasets/IMAGENET/ILSVRC2012'
 
 _IMAGENET_LOWSHOT_BENCHMARK_CATEGORY_SPLITS_PATH = './data/IMAGENET_LOWSHOT_BENCHMARK_CATEGORY_SPLITS.json'
@@ -87,7 +86,7 @@ def buildLabelIndex(labels):
 
 def load_data(file):
     with open(file, 'rb') as fo:
-        data = pickle.load(fo)
+        data = pickle.load(fo, encoding="latin1")
     return data
 
 
@@ -120,6 +119,7 @@ class MiniImageNet(data.Dataset):
             # During training phase we only load the training phase images
             # of the training categories (aka base categories).
             data_train = load_data(file_train_categories_train_phase)
+            # Total of 38400 images with (84,84,3)
             self.data = data_train['data']
             self.labels = data_train['labels']
 
@@ -247,7 +247,7 @@ class FewShotDataloader():
         assert(cat_id in self.dataset.label2ind)
         assert(len(self.dataset.label2ind[cat_id]) >= sample_size)
         # Note: random.sample samples elements without replacement.
-        return random.sample(self.dataset.label2ind[cat_id], sample_size)
+        return random.sample(self.dataset.label2ind[cat_id], int(sample_size))
 
     def sampleCategories(self, cat_set, sample_size=1):
         """
@@ -375,13 +375,13 @@ class FewShotDataloader():
         Tnovel = []
         Exemplars = []
         assert((nTestNovel % nKnovel) == 0)
-        nEvalExamplesPerClass = nTestNovel / nKnovel
+        nEvalExamplesPerClass = int(nTestNovel / nKnovel)
 
         for Knovel_idx in range(len(Knovel)):
             imd_ids = self.sampleImageIdsFrom(
                 Knovel[Knovel_idx],
                 sample_size=(nEvalExamplesPerClass + nExemplars))
-
+            
             imds_tnovel = imd_ids[:nEvalExamplesPerClass]
             imds_ememplars = imd_ids[nEvalExamplesPerClass:]
 

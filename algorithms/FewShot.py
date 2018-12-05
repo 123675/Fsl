@@ -52,11 +52,10 @@ class FewShot(Algorithm):
             train_test_stage = 'fewshot'
             assert(len(batch) == 6)
             images_train, labels_train, images_test, labels_test, K, nKbase = batch
-            self.nKbase = nKbase.squeeze()[0]
+            self.nKbase = nKbase.squeeze().item()
             self.tensors['images_train'].resize_(images_train.size()).copy_(images_train)
             self.tensors['labels_train'].resize_(labels_train.size()).copy_(labels_train)
             labels_train = self.tensors['labels_train']
-
             nKnovel = 1 + labels_train.max() - self.nKbase
 
             labels_train_1hot_size = list(labels_train.size()) + [nKnovel,]
@@ -137,7 +136,7 @@ class FewShot(Algorithm):
         #************************** COMPUTE LOSSES *****************************
         loss_cls_all = criterion(cls_scores_var, labels_test_var)
         loss_total = loss_cls_all
-        loss_record['loss'] = loss_total.data[0]
+        loss_record['loss'] = loss_total.item()
         loss_record['AccuracyBase'] = top1accuracy(
             cls_scores_var.data, labels_test_var.data)
         #***********************************************************************
@@ -181,13 +180,13 @@ class FewShot(Algorithm):
 
         #***********************************************************************
         #*********************** SET TORCH VARIABLES ***************************
-        is_volatile = (not do_train or not do_train_feat_model)
-        images_test_var = Variable(images_test, volatile=is_volatile)
+        is_volatile =  (not do_train or not do_train_feat_model)
+        #images_test_var = Variable(images_test, volatile=is_volatile)
         labels_test_var = Variable(labels_test, requires_grad=False)
         Kbase_var = (None if (nKbase==0) else
             Variable(Kids[:,:nKbase].contiguous(),requires_grad=False))
         labels_train_1hot_var = Variable(labels_train_1hot, requires_grad=False)
-        images_train_var = Variable(images_train, volatile=is_volatile)
+        #images_train_var = Variable(images_train, volatile=is_volatile)
         #***********************************************************************
 
         loss_record = {}
@@ -198,10 +197,10 @@ class FewShot(Algorithm):
         batch_size, num_train_examples, channels, height, width = images_train.size()
         num_test_examples = images_test.size(1)
         features_train_var = feat_model(
-            images_train_var.view(batch_size * num_train_examples, channels, height, width)
+            images_train.view(batch_size * num_train_examples, channels, height, width)
         )
         features_test_var = feat_model(
-            images_test_var.view(batch_size * num_test_examples, channels, height, width)
+            images_test.view(batch_size * num_test_examples, channels, height, width)
         )
         features_train_var = features_train_var.view(
             [batch_size, num_train_examples,] + list(features_train_var.size()[1:])
@@ -236,7 +235,7 @@ class FewShot(Algorithm):
         #************************* COMPUTE LOSSES ******************************
         loss_cls_all = criterion(cls_scores_var, labels_test_var)
         loss_total = loss_cls_all
-        loss_record['loss'] = loss_total.data[0]
+        loss_record['loss'] = loss_total.item()
 
         if self.nKbase > 0:
             loss_record['AccuracyBoth'] = top1accuracy(

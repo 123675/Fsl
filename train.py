@@ -72,6 +72,7 @@ train_split, test_split = 'train', 'val'
 dataset_train = MiniImageNet(phase=train_split)
 dataset_test = MiniImageNet(phase=test_split)
 
+#print("###################################dataset train = ", dataset_train.data.shape)  (38400,84,84,3)
 dloader_train = FewShotDataloader(
     dataset=dataset_train,
     nKnovel=data_train_opt['nKnovel'],
