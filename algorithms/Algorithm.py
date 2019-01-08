@@ -31,7 +31,7 @@ class Algorithm():
         self.curr_epoch = 0
         self.optimizers = {}
         self.keep_best_model_metric_name = (
-            opt['best_metric'] if ('best_metric' in opt) else None)
+            opt['best_metric'] + "_cnf" if ('best_metric' in opt) else None)
 
     def set_experiment_dir(self,directory_path):
         self.exp_dir = directory_path
@@ -105,6 +105,9 @@ class Algorithm():
 
         assert(os.path.isfile(pretrained_path))
         pretrained_model = torch.load(pretrained_path)
+        for parameter_name in pretrained_model['network']:
+            print(parameter_name, "\t", pretrained_model['network'][parameter_name].size())
+		
         if list(pretrained_model['network'].keys()) == list(network.state_dict().keys()):
             network.load_state_dict(pretrained_model['network'])
         else:
@@ -283,9 +286,8 @@ class Algorithm():
 
             if data_loader_test is not None:
                 eval_stats = self.evaluate(data_loader_test)
-                print("eval_stats = ",eval_stats)
                 self.logger.info('==> Evaluation stats: %s' % (eval_stats))
-                #self.keep_record_of_best_model(eval_stats, self.curr_epoch)
+                self.keep_record_of_best_model(eval_stats, self.curr_epoch)
 
         self.print_eval_stats_of_best_model()
 
@@ -301,7 +303,6 @@ class Algorithm():
         disp_step = self.opt['disp_step'] if ('disp_step' in self.opt) else 50
         train_stats = utils.DAverageMeter()
         self.bnumber = len(data_loader())
-        #print("#############################################################################################data.shape = ",data_loader(epoch).dataset.shape)
         for idx, batch in enumerate(tqdm(data_loader(epoch))):
             self.biter = idx # batch iteration.
             self.global_iter = self.curr_epoch * len(data_loader()) + self.biter
@@ -339,9 +340,7 @@ class Algorithm():
         # filter out the networks that are not trainable and that do
         # not have a learning rate Look Up Table (LUT_lr) in their optim_params
         optim_params_filtered = {k:v for k,v in list(self.optim_params.items())
-        print("############################ in adjust learning rates optim_params_filtered = ", optim_params_fitered)
             if (v != None and ('LUT_lr' in v))}
-
         for key, oparams in list(optim_params_filtered.items()):
             LUT = oparams['LUT_lr']
             lr = next((lr for (max_epoch, lr) in LUT if max_epoch>epoch), LUT[-1][1])
@@ -357,7 +356,7 @@ class Algorithm():
     def keep_record_of_best_model(self, eval_stats, current_epoch):
         if self.keep_best_model_metric_name is not None:
             metric_name = self.keep_best_model_metric_name
-            print("metric_name = ",metric_name)
+           
             if (metric_name not in eval_stats):
                 raise ValueError('The provided metric {0} for keeping the best '
                                  'model is not computed by the evaluation routine.'

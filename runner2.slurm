@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH -p akya-cuda
+#SBATCH -p barbun-cuda
 #SBATCH -A obbaran
 #SBATCH --time=20:03:25
 #SBATCH -J SIN
@@ -17,4 +17,8 @@
 export PATH=/truba_scratch/eakbas/software/cuda-9.0/bin:$PATH
 export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/truba_scratch/eakbas/software/cuda-9.0/lib64
 
-CUDA_VISIBLE_DEVICES=0 python train.py --config=miniImageNet_Conv128CosineClassifier
+#CUDA_VISIBLE_DEVICES=0 python train.py --config=miniImageNet_Conv128CosineClassifier
+#CUDA_VISIBLE_DEVICES=0 python train.py --config=miniImageNet_Conv128CosineClassifierGenWeightAvgN1
+#CUDA_VISIBLE_DEVICES=0 python train.py --config=miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+CUDA_VISIBLE_DEVICES=0 python evaluate.py --config=miniImageNet_Conv128CosineClassifierGenWeightAvgN1
+CUDA_VISIBLE_DEVICES=0 python evaluate.py --config=miniImageNet_Conv128CosineClassifierGenWeightAvgN5
