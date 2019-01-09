@@ -1,0 +1,28 @@
+2018-12-06 12:30:22,467 - algorithms.Algorithm - INFO   - Algorithm options {'data_train_opt': {'nKnovel': 5, 'nKbase': -1, 'nExemplars': 1, 'nTestNovel': 15, 'nTestBase': 15, 'batch_size': 8, 'epoch_size': 8000}, 'data_test_opt': {'nKnovel': 5, 'nKbase': 64, 'nExemplars': 1, 'nTestNovel': 75, 'nTestBase': 75, 'batch_size': 1, 'epoch_size': 2000}, 'max_num_epochs': 1, 'networks': {'feat_model': {'def_file': 'architectures/ConvNet.py', 'pretrained': './experiments/miniImageNet_Conv128CosineClassifier/feat_model_net_epoch*.best', 'opt': {'userelu': False, 'in_planes': 3, 'out_planes': [64, 64, 128, 128], 'num_stages': 4}, 'optim_params': None}, 'classifier': {'def_file': 'architectures/ClassifierWithFewShotGenerationModule.py', 'pretrained': './experiments/miniImageNet_Conv128CosineClassifier/classifier_net_epoch*.best', 'opt': {'classifier_type': 'cosine', 'weight_generator_type': 'feature_averaging', 'nKall': 64, 'nFeat': 3200, 'scale_cls': 10}, 'optim_params': {'optim_type': 'sgd', 'lr': 0.1, 'momentum': 0.9, 'weight_decay': 0.0005, 'nesterov': True, 'LUT_lr': [(20, 0.1), (40, 0.006), (50, 0.0012), (60, 0.00024)]}}}, 'criterions': {'loss': {'ctype': 'CrossEntropyLoss', 'opt': None}}, 'algorithm_type': 'FewShot', 'exp_dir': './experiments/miniImageNet_Conv128CosineClassifierGenWeightAvgN1', 'disp_step': 200}
+2018-12-06 12:30:22,469 - algorithms.Algorithm - INFO   - Set network feat_model
+2018-12-06 12:30:22,469 - algorithms.Algorithm - INFO   - ==> Initiliaze network feat_model from file architectures/ConvNet.py with opts: {'userelu': False, 'in_planes': 3, 'out_planes': [64, 64, 128, 128], 'num_stages': 4}
+2018-12-06 12:30:22,483 - algorithms.Algorithm - INFO   - ==> Load pretrained parameters from file ./experiments/miniImageNet_Conv128CosineClassifier/feat_model_net_epoch1.best:
+2018-12-06 12:30:24,850 - algorithms.Algorithm - INFO   - Set network classifier
+2018-12-06 12:30:24,851 - algorithms.Algorithm - INFO   - ==> Initiliaze network classifier from file architectures/ClassifierWithFewShotGenerationModule.py with opts: {'classifier_type': 'cosine', 'weight_generator_type': 'feature_averaging', 'nKall': 64, 'nFeat': 3200, 'scale_cls': 10}
+2018-12-06 12:30:24,880 - algorithms.Algorithm - INFO   - ==> Load pretrained parameters from file ./experiments/miniImageNet_Conv128CosineClassifier/classifier_net_epoch1.best:
+2018-12-06 12:30:24,885 - algorithms.Algorithm - INFO   - ==> WARNING: network parameters in pre-trained file ./experiments/miniImageNet_Conv128CosineClassifier/classifier_net_epoch1.best do not strictly match
+2018-12-06 12:30:24,885 - algorithms.Algorithm - INFO   - ==> Copying parameter weight_base from file ./experiments/miniImageNet_Conv128CosineClassifier/classifier_net_epoch1.best
+2018-12-06 12:30:24,886 - algorithms.Algorithm - INFO   - ==> Copying parameter bias from file ./experiments/miniImageNet_Conv128CosineClassifier/classifier_net_epoch1.best
+2018-12-06 12:30:24,886 - algorithms.Algorithm - INFO   - ==> Copying parameter scale_cls from file ./experiments/miniImageNet_Conv128CosineClassifier/classifier_net_epoch1.best
+2018-12-06 12:30:24,886 - algorithms.Algorithm - INFO   - Initialize criterion[loss]: CrossEntropyLoss with options: None
+2018-12-06 12:30:24,888 - algorithms.Algorithm - INFO   - Initialize optimizer: sgd with params: {'optim_type': 'sgd', 'lr': 0.1, 'momentum': 0.9, 'weight_decay': 0.0005, 'nesterov': True, 'LUT_lr': [(20, 0.1), (40, 0.006), (50, 0.0012), (60, 0.00024)]} for netwotk: classifier
+2018-12-06 12:30:24,889 - algorithms.Algorithm - INFO   - Training epoch [  1 /   1]
+2018-12-06 12:30:24,889 - algorithms.Algorithm - INFO   - ==> Set to classifier optimizer lr = 0.1000000000
+2018-12-06 12:30:24,889 - algorithms.Algorithm - INFO   - Training: miniImageNet_Conv128CosineClassifierGenWeightAvgN1
+2018-12-06 12:30:32,810 - algorithms.Algorithm - INFO   - ==> Iteration [  1][ 200 / 1000]: {'loss': 2.3089}
+2018-12-06 12:30:40,401 - algorithms.Algorithm - INFO   - ==> Iteration [  1][ 400 / 1000]: {'loss': 2.2807}
+2018-12-06 12:30:48,059 - algorithms.Algorithm - INFO   - ==> Iteration [  1][ 600 / 1000]: {'loss': 2.2624}
+2018-12-06 12:30:55,792 - algorithms.Algorithm - INFO   - ==> Iteration [  1][ 800 / 1000]: {'loss': 2.2565}
+2018-12-06 12:31:03,514 - algorithms.Algorithm - INFO   - ==> Iteration [  1][1000 / 1000]: {'loss': 2.2511}
+2018-12-06 12:31:03,543 - algorithms.Algorithm - INFO   - ==> Training stats: {'loss': 2.2511}
+2018-12-06 12:31:03,568 - algorithms.Algorithm - INFO   - Evaluating: miniImageNet_Conv128CosineClassifierGenWeightAvgN1
+2018-12-06 12:31:03,568 - algorithms.Algorithm - INFO   - ==> Dataset: MiniImageNet_val [2000 batches]
+2018-12-06 12:32:14,052 - algorithms.Algorithm - INFO   - ==> Results: {'loss': 2.4505, 'AccuracyNovel_cnf': 0.4095}
+2018-12-06 12:32:14,053 - algorithms.Algorithm - INFO   - ==> Evaluation stats: {'loss': 2.4505, 'AccuracyNovel_cnf': 0.4095}
+2018-12-06 12:32:14,063 - algorithms.Algorithm - INFO   - ==> Best results w.r.t. AccuracyNovel_cnf metric: epoch: 1 - {'loss': 2.4505, 'AccuracyNovel_cnf': 0.4095}
+2018-12-06 12:32:14,063 - algorithms.Algorithm - INFO   - ==> Best results w.r.t. AccuracyNovel_cnf metric: epoch: 1 - {'loss': 2.4505, 'AccuracyNovel_cnf': 0.4095}

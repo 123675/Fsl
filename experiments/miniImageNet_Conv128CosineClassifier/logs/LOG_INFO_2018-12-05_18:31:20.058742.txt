@@ -1,0 +1,24 @@
+2018-12-05 18:31:20,061 - algorithms.Algorithm - INFO   - Algorithm options {'data_train_opt': {'nKnovel': 0, 'nKbase': 64, 'nExemplars': 0, 'nTestNovel': 0, 'nTestBase': 32, 'batch_size': 8, 'epoch_size': 8000}, 'data_test_opt': {'nKnovel': 5, 'nKbase': 64, 'nExemplars': 1, 'nTestNovel': 75, 'nTestBase': 75, 'batch_size': 1, 'epoch_size': 2000}, 'max_num_epochs': 1, 'networks': {'feat_model': {'def_file': 'architectures/ConvNet.py', 'pretrained': None, 'opt': {'userelu': False, 'in_planes': 3, 'out_planes': [64, 64, 128, 128], 'num_stages': 4}, 'optim_params': {'optim_type': 'sgd', 'lr': 0.1, 'momentum': 0.9, 'weight_decay': 0.0005, 'nesterov': True, 'LUT_lr': [(20, 0.1), (40, 0.006), (50, 0.0012), (60, 0.00024)]}}, 'classifier': {'def_file': 'architectures/ClassifierWithFewShotGenerationModule.py', 'pretrained': None, 'opt': {'classifier_type': 'cosine', 'weight_generator_type': 'none', 'nKall': 64, 'nFeat': 3200, 'scale_cls': 10}, 'optim_params': {'optim_type': 'sgd', 'lr': 0.1, 'momentum': 0.9, 'weight_decay': 0.0005, 'nesterov': True, 'LUT_lr': [(20, 0.1), (40, 0.006), (50, 0.0012), (60, 0.00024)]}}}, 'criterions': {'loss': {'ctype': 'CrossEntropyLoss', 'opt': None}}, 'algorithm_type': 'FewShot', 'exp_dir': './experiments/miniImageNet_Conv128CosineClassifier', 'disp_step': 200}
+2018-12-05 18:31:20,064 - algorithms.Algorithm - INFO   - Set network feat_model
+2018-12-05 18:31:20,065 - algorithms.Algorithm - INFO   - ==> Initiliaze network feat_model from file architectures/ConvNet.py with opts: {'userelu': False, 'in_planes': 3, 'out_planes': [64, 64, 128, 128], 'num_stages': 4}
+2018-12-05 18:31:20,088 - algorithms.Algorithm - INFO   - Set network classifier
+2018-12-05 18:31:20,088 - algorithms.Algorithm - INFO   - ==> Initiliaze network classifier from file architectures/ClassifierWithFewShotGenerationModule.py with opts: {'classifier_type': 'cosine', 'weight_generator_type': 'none', 'nKall': 64, 'nFeat': 3200, 'scale_cls': 10}
+2018-12-05 18:31:20,092 - algorithms.Algorithm - INFO   - Initialize criterion[loss]: CrossEntropyLoss with options: None
+2018-12-05 18:31:22,122 - algorithms.Algorithm - INFO   - Initialize optimizer: sgd with params: {'optim_type': 'sgd', 'lr': 0.1, 'momentum': 0.9, 'weight_decay': 0.0005, 'nesterov': True, 'LUT_lr': [(20, 0.1), (40, 0.006), (50, 0.0012), (60, 0.00024)]} for netwotk: feat_model
+2018-12-05 18:31:22,123 - algorithms.Algorithm - INFO   - Initialize optimizer: sgd with params: {'optim_type': 'sgd', 'lr': 0.1, 'momentum': 0.9, 'weight_decay': 0.0005, 'nesterov': True, 'LUT_lr': [(20, 0.1), (40, 0.006), (50, 0.0012), (60, 0.00024)]} for netwotk: classifier
+2018-12-05 18:31:22,123 - algorithms.Algorithm - INFO   - Training epoch [  1 /   1]
+2018-12-05 18:31:22,123 - algorithms.Algorithm - INFO   - ==> Set to feat_model optimizer lr = 0.1000000000
+2018-12-05 18:31:22,123 - algorithms.Algorithm - INFO   - ==> Set to classifier optimizer lr = 0.1000000000
+2018-12-05 18:31:22,123 - algorithms.Algorithm - INFO   - Training: miniImageNet_Conv128CosineClassifier
+2018-12-05 18:31:36,407 - algorithms.Algorithm - INFO   - ==> Iteration [  1][ 200 / 1000]: {'loss': 3.1105}
+2018-12-05 18:31:50,451 - algorithms.Algorithm - INFO   - ==> Iteration [  1][ 400 / 1000]: {'loss': 2.7789}
+2018-12-05 18:32:04,543 - algorithms.Algorithm - INFO   - ==> Iteration [  1][ 600 / 1000]: {'loss': 2.5748}
+2018-12-05 18:32:18,634 - algorithms.Algorithm - INFO   - ==> Iteration [  1][ 800 / 1000]: {'loss': 2.4259}
+2018-12-05 18:32:32,737 - algorithms.Algorithm - INFO   - ==> Iteration [  1][1000 / 1000]: {'loss': 2.3127}
+2018-12-05 18:32:32,741 - algorithms.Algorithm - INFO   - ==> Training stats: {'loss': 2.3127}
+2018-12-05 18:32:32,834 - algorithms.Algorithm - INFO   - Evaluating: miniImageNet_Conv128CosineClassifier
+2018-12-05 18:32:32,834 - algorithms.Algorithm - INFO   - ==> Dataset: MiniImageNet_val [2000 batches]
+2018-12-05 18:33:43,777 - algorithms.Algorithm - INFO   - ==> Results: {'loss': 2.8344, 'AccuracyNovel_cnf': 0.4272}
+2018-12-05 18:33:43,777 - algorithms.Algorithm - INFO   - ==> Evaluation stats: {'loss': 2.8344, 'AccuracyNovel_cnf': 0.4272}
+2018-12-05 18:33:44,267 - algorithms.Algorithm - INFO   - ==> Best results w.r.t. AccuracyNovel_cnf metric: epoch: 1 - {'loss': 2.8344, 'AccuracyNovel_cnf': 0.4272}
+2018-12-05 18:33:44,268 - algorithms.Algorithm - INFO   - ==> Best results w.r.t. AccuracyNovel_cnf metric: epoch: 1 - {'loss': 2.8344, 'AccuracyNovel_cnf': 0.4272}

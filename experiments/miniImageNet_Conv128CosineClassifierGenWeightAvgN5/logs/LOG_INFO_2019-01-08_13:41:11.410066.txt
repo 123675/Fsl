@@ -1,0 +1,800 @@
+2019-01-08 13:41:11,536 - algorithms.Algorithm - INFO   - Algorithm options {'data_train_opt': {'nKnovel': 5, 'nKbase': -1, 'nExemplars': 5, 'nTestNovel': 15, 'nTestBase': 15, 'batch_size': 8, 'epoch_size': 8000}, 'data_test_opt': {'nKnovel': 5, 'nKbase': 64, 'nExemplars': 5, 'nTestNovel': 75, 'nTestBase': 75, 'batch_size': 1, 'epoch_size': 2000}, 'max_num_epochs': 60, 'networks': {'feat_model': {'def_file': 'architectures/ConvNet.py', 'pretrained': './experiments/miniImageNet_Conv128CosineClassifier/feat_model_net_epoch*.best', 'opt': {'userelu': False, 'in_planes': 3, 'out_planes': [64, 64, 128, 128], 'num_stages': 4}, 'optim_params': None}, 'classifier': {'def_file': 'architectures/ClassifierWithFewShotGenerationModule.py', 'pretrained': './experiments/miniImageNet_Conv128CosineClassifier/classifier_net_epoch*.best', 'opt': {'classifier_type': 'cosine', 'weight_generator_type': 'feature_averaging', 'nKall': 64, 'nFeat': 3200, 'scale_cls': 10}, 'optim_params': {'optim_type': 'sgd', 'lr': 0.1, 'momentum': 0.9, 'weight_decay': 0.0005, 'nesterov': True, 'LUT_lr': [(20, 0.1), (40, 0.006), (50, 0.0012), (60, 0.00024)]}}}, 'criterions': {'loss': {'ctype': 'CrossEntropyLoss', 'opt': None}}, 'algorithm_type': 'FewShot', 'exp_dir': './experiments/miniImageNet_Conv128CosineClassifierGenWeightAvgN5', 'disp_step': 200}
+2019-01-08 13:41:11,537 - algorithms.Algorithm - INFO   - Set network feat_model
+2019-01-08 13:41:11,538 - algorithms.Algorithm - INFO   - ==> Initiliaze network feat_model from file architectures/ConvNet.py with opts: {'userelu': False, 'in_planes': 3, 'out_planes': [64, 64, 128, 128], 'num_stages': 4}
+2019-01-08 13:41:11,575 - algorithms.Algorithm - INFO   - ==> Load pretrained parameters from file ./experiments/miniImageNet_Conv128CosineClassifier/feat_model_net_epoch1.best:
+2019-01-08 13:41:16,702 - algorithms.Algorithm - INFO   - Set network classifier
+2019-01-08 13:41:16,702 - algorithms.Algorithm - INFO   - ==> Initiliaze network classifier from file architectures/ClassifierWithFewShotGenerationModule.py with opts: {'classifier_type': 'cosine', 'weight_generator_type': 'feature_averaging', 'nKall': 64, 'nFeat': 3200, 'scale_cls': 10}
+2019-01-08 13:41:16,724 - algorithms.Algorithm - INFO   - ==> Load pretrained parameters from file ./experiments/miniImageNet_Conv128CosineClassifier/classifier_net_epoch1.best:
+2019-01-08 13:41:16,764 - algorithms.Algorithm - INFO   - ==> WARNING: network parameters in pre-trained file ./experiments/miniImageNet_Conv128CosineClassifier/classifier_net_epoch1.best do not strictly match
+2019-01-08 13:41:16,764 - algorithms.Algorithm - INFO   - ==> Copying parameter weight_base from file ./experiments/miniImageNet_Conv128CosineClassifier/classifier_net_epoch1.best
+2019-01-08 13:41:16,765 - algorithms.Algorithm - INFO   - ==> Copying parameter bias from file ./experiments/miniImageNet_Conv128CosineClassifier/classifier_net_epoch1.best
+2019-01-08 13:41:16,765 - algorithms.Algorithm - INFO   - ==> Copying parameter scale_cls from file ./experiments/miniImageNet_Conv128CosineClassifier/classifier_net_epoch1.best
+2019-01-08 13:41:16,765 - algorithms.Algorithm - INFO   - Initialize criterion[loss]: CrossEntropyLoss with options: None
+2019-01-08 13:41:16,768 - algorithms.Algorithm - INFO   - Initialize optimizer: sgd with params: {'optim_type': 'sgd', 'lr': 0.1, 'momentum': 0.9, 'weight_decay': 0.0005, 'nesterov': True, 'LUT_lr': [(20, 0.1), (40, 0.006), (50, 0.0012), (60, 0.00024)]} for netwotk: classifier
+2019-01-08 13:41:16,769 - algorithms.Algorithm - INFO   - Training epoch [  1 /  60]
+2019-01-08 13:41:16,769 - algorithms.Algorithm - INFO   - ==> Set to classifier optimizer lr = 0.1000000000
+2019-01-08 13:41:16,769 - algorithms.Algorithm - INFO   - Training: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 13:41:28,765 - algorithms.Algorithm - INFO   - ==> Iteration [  1][ 200 / 1000]: {'loss': 1.8517}
+2019-01-08 13:41:40,313 - algorithms.Algorithm - INFO   - ==> Iteration [  1][ 400 / 1000]: {'loss': 1.8423}
+2019-01-08 13:41:51,860 - algorithms.Algorithm - INFO   - ==> Iteration [  1][ 600 / 1000]: {'loss': 1.8285}
+2019-01-08 13:42:03,437 - algorithms.Algorithm - INFO   - ==> Iteration [  1][ 800 / 1000]: {'loss': 1.8287}
+2019-01-08 13:42:15,060 - algorithms.Algorithm - INFO   - ==> Iteration [  1][1000 / 1000]: {'loss': 1.8241}
+2019-01-08 13:42:15,130 - algorithms.Algorithm - INFO   - ==> Training stats: {'loss': 1.8241}
+2019-01-08 13:42:15,140 - algorithms.Algorithm - INFO   - Evaluating: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 13:42:15,140 - algorithms.Algorithm - INFO   - ==> Dataset: MiniImageNet_val [2000 batches]
+2019-01-08 13:43:35,101 - algorithms.Algorithm - INFO   - ==> Results: {'loss': 2.0357, 'AccuracyNovel_cnf': 0.3721}
+2019-01-08 13:43:35,101 - algorithms.Algorithm - INFO   - ==> Evaluation stats: {'loss': 2.0357, 'AccuracyNovel_cnf': 0.3721}
+2019-01-08 13:43:35,110 - algorithms.Algorithm - INFO   - ==> Best results w.r.t. AccuracyNovel_cnf metric: epoch: 1 - {'loss': 2.0357, 'AccuracyNovel_cnf': 0.3721}
+2019-01-08 13:43:35,110 - algorithms.Algorithm - INFO   - Training epoch [  2 /  60]
+2019-01-08 13:43:35,111 - algorithms.Algorithm - INFO   - ==> Set to classifier optimizer lr = 0.1000000000
+2019-01-08 13:43:35,111 - algorithms.Algorithm - INFO   - Training: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 13:43:47,184 - algorithms.Algorithm - INFO   - ==> Iteration [  2][ 200 / 1000]: {'loss': 1.8057}
+2019-01-08 13:43:59,042 - algorithms.Algorithm - INFO   - ==> Iteration [  2][ 400 / 1000]: {'loss': 1.8008}
+2019-01-08 13:44:10,895 - algorithms.Algorithm - INFO   - ==> Iteration [  2][ 600 / 1000]: {'loss': 1.795}
+2019-01-08 13:44:22,480 - algorithms.Algorithm - INFO   - ==> Iteration [  2][ 800 / 1000]: {'loss': 1.7893}
+2019-01-08 13:44:34,566 - algorithms.Algorithm - INFO   - ==> Iteration [  2][1000 / 1000]: {'loss': 1.7852}
+2019-01-08 13:44:34,580 - algorithms.Algorithm - INFO   - ==> Training stats: {'loss': 1.7852}
+2019-01-08 13:44:34,591 - algorithms.Algorithm - INFO   - Evaluating: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 13:44:34,591 - algorithms.Algorithm - INFO   - ==> Dataset: MiniImageNet_val [2000 batches]
+2019-01-08 13:45:57,457 - algorithms.Algorithm - INFO   - ==> Results: {'loss': 2.0034, 'AccuracyNovel_cnf': 0.3706}
+2019-01-08 13:45:57,457 - algorithms.Algorithm - INFO   - ==> Evaluation stats: {'loss': 2.0034, 'AccuracyNovel_cnf': 0.3706}
+2019-01-08 13:45:57,457 - algorithms.Algorithm - INFO   - Training epoch [  3 /  60]
+2019-01-08 13:45:57,457 - algorithms.Algorithm - INFO   - ==> Set to classifier optimizer lr = 0.1000000000
+2019-01-08 13:45:57,457 - algorithms.Algorithm - INFO   - Training: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 13:46:08,996 - algorithms.Algorithm - INFO   - ==> Iteration [  3][ 200 / 1000]: {'loss': 1.7432}
+2019-01-08 13:46:20,249 - algorithms.Algorithm - INFO   - ==> Iteration [  3][ 400 / 1000]: {'loss': 1.7439}
+2019-01-08 13:46:31,536 - algorithms.Algorithm - INFO   - ==> Iteration [  3][ 600 / 1000]: {'loss': 1.7378}
+2019-01-08 13:46:43,455 - algorithms.Algorithm - INFO   - ==> Iteration [  3][ 800 / 1000]: {'loss': 1.7307}
+2019-01-08 13:46:55,112 - algorithms.Algorithm - INFO   - ==> Iteration [  3][1000 / 1000]: {'loss': 1.7251}
+2019-01-08 13:46:55,117 - algorithms.Algorithm - INFO   - ==> Training stats: {'loss': 1.7251}
+2019-01-08 13:46:55,127 - algorithms.Algorithm - INFO   - Evaluating: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 13:46:55,127 - algorithms.Algorithm - INFO   - ==> Dataset: MiniImageNet_val [2000 batches]
+2019-01-08 13:48:15,751 - algorithms.Algorithm - INFO   - ==> Results: {'loss': 1.9601, 'AccuracyNovel_cnf': 0.3726}
+2019-01-08 13:48:15,751 - algorithms.Algorithm - INFO   - ==> Evaluation stats: {'loss': 1.9601, 'AccuracyNovel_cnf': 0.3726}
+2019-01-08 13:48:15,762 - algorithms.Algorithm - INFO   - ==> Best results w.r.t. AccuracyNovel_cnf metric: epoch: 3 - {'loss': 1.9601, 'AccuracyNovel_cnf': 0.3726}
+2019-01-08 13:48:15,762 - algorithms.Algorithm - INFO   - Training epoch [  4 /  60]
+2019-01-08 13:48:15,762 - algorithms.Algorithm - INFO   - ==> Set to classifier optimizer lr = 0.1000000000
+2019-01-08 13:48:15,763 - algorithms.Algorithm - INFO   - Training: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 13:48:27,703 - algorithms.Algorithm - INFO   - ==> Iteration [  4][ 200 / 1000]: {'loss': 1.704}
+2019-01-08 13:48:39,207 - algorithms.Algorithm - INFO   - ==> Iteration [  4][ 400 / 1000]: {'loss': 1.6918}
+2019-01-08 13:48:50,778 - algorithms.Algorithm - INFO   - ==> Iteration [  4][ 600 / 1000]: {'loss': 1.6879}
+2019-01-08 13:49:02,317 - algorithms.Algorithm - INFO   - ==> Iteration [  4][ 800 / 1000]: {'loss': 1.687}
+2019-01-08 13:49:13,899 - algorithms.Algorithm - INFO   - ==> Iteration [  4][1000 / 1000]: {'loss': 1.6858}
+2019-01-08 13:49:13,905 - algorithms.Algorithm - INFO   - ==> Training stats: {'loss': 1.6858}
+2019-01-08 13:49:13,914 - algorithms.Algorithm - INFO   - Evaluating: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 13:49:13,914 - algorithms.Algorithm - INFO   - ==> Dataset: MiniImageNet_val [2000 batches]
+2019-01-08 13:50:30,223 - algorithms.Algorithm - INFO   - ==> Results: {'loss': 1.9422, 'AccuracyNovel_cnf': 0.3756}
+2019-01-08 13:50:30,223 - algorithms.Algorithm - INFO   - ==> Evaluation stats: {'loss': 1.9422, 'AccuracyNovel_cnf': 0.3756}
+2019-01-08 13:50:30,234 - algorithms.Algorithm - INFO   - ==> Best results w.r.t. AccuracyNovel_cnf metric: epoch: 4 - {'loss': 1.9422, 'AccuracyNovel_cnf': 0.3756}
+2019-01-08 13:50:30,234 - algorithms.Algorithm - INFO   - Training epoch [  5 /  60]
+2019-01-08 13:50:30,234 - algorithms.Algorithm - INFO   - ==> Set to classifier optimizer lr = 0.1000000000
+2019-01-08 13:50:30,234 - algorithms.Algorithm - INFO   - Training: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 13:50:42,068 - algorithms.Algorithm - INFO   - ==> Iteration [  5][ 200 / 1000]: {'loss': 1.6696}
+2019-01-08 13:50:53,580 - algorithms.Algorithm - INFO   - ==> Iteration [  5][ 400 / 1000]: {'loss': 1.6724}
+2019-01-08 13:51:05,124 - algorithms.Algorithm - INFO   - ==> Iteration [  5][ 600 / 1000]: {'loss': 1.667}
+2019-01-08 13:51:16,776 - algorithms.Algorithm - INFO   - ==> Iteration [  5][ 800 / 1000]: {'loss': 1.6653}
+2019-01-08 13:51:28,470 - algorithms.Algorithm - INFO   - ==> Iteration [  5][1000 / 1000]: {'loss': 1.6672}
+2019-01-08 13:51:28,479 - algorithms.Algorithm - INFO   - ==> Training stats: {'loss': 1.6672}
+2019-01-08 13:51:28,489 - algorithms.Algorithm - INFO   - Evaluating: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 13:51:28,489 - algorithms.Algorithm - INFO   - ==> Dataset: MiniImageNet_val [2000 batches]
+2019-01-08 13:52:46,870 - algorithms.Algorithm - INFO   - ==> Results: {'loss': 1.9287, 'AccuracyNovel_cnf': 0.3732}
+2019-01-08 13:52:46,870 - algorithms.Algorithm - INFO   - ==> Evaluation stats: {'loss': 1.9287, 'AccuracyNovel_cnf': 0.3732}
+2019-01-08 13:52:46,870 - algorithms.Algorithm - INFO   - Training epoch [  6 /  60]
+2019-01-08 13:52:46,870 - algorithms.Algorithm - INFO   - ==> Set to classifier optimizer lr = 0.1000000000
+2019-01-08 13:52:46,870 - algorithms.Algorithm - INFO   - Training: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 13:52:58,451 - algorithms.Algorithm - INFO   - ==> Iteration [  6][ 200 / 1000]: {'loss': 1.6555}
+2019-01-08 13:53:09,806 - algorithms.Algorithm - INFO   - ==> Iteration [  6][ 400 / 1000]: {'loss': 1.6582}
+2019-01-08 13:53:21,357 - algorithms.Algorithm - INFO   - ==> Iteration [  6][ 600 / 1000]: {'loss': 1.6623}
+2019-01-08 13:53:32,950 - algorithms.Algorithm - INFO   - ==> Iteration [  6][ 800 / 1000]: {'loss': 1.6633}
+2019-01-08 13:53:44,552 - algorithms.Algorithm - INFO   - ==> Iteration [  6][1000 / 1000]: {'loss': 1.6614}
+2019-01-08 13:53:44,559 - algorithms.Algorithm - INFO   - ==> Training stats: {'loss': 1.6614}
+2019-01-08 13:53:44,935 - algorithms.Algorithm - INFO   - Evaluating: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 13:53:44,935 - algorithms.Algorithm - INFO   - ==> Dataset: MiniImageNet_val [2000 batches]
+2019-01-08 13:55:04,560 - algorithms.Algorithm - INFO   - ==> Results: {'loss': 1.9272, 'AccuracyNovel_cnf': 0.373}
+2019-01-08 13:55:04,561 - algorithms.Algorithm - INFO   - ==> Evaluation stats: {'loss': 1.9272, 'AccuracyNovel_cnf': 0.373}
+2019-01-08 13:55:04,561 - algorithms.Algorithm - INFO   - Training epoch [  7 /  60]
+2019-01-08 13:55:04,561 - algorithms.Algorithm - INFO   - ==> Set to classifier optimizer lr = 0.1000000000
+2019-01-08 13:55:04,561 - algorithms.Algorithm - INFO   - Training: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 13:55:16,339 - algorithms.Algorithm - INFO   - ==> Iteration [  7][ 200 / 1000]: {'loss': 1.6717}
+2019-01-08 13:55:27,875 - algorithms.Algorithm - INFO   - ==> Iteration [  7][ 400 / 1000]: {'loss': 1.6748}
+2019-01-08 13:55:39,418 - algorithms.Algorithm - INFO   - ==> Iteration [  7][ 600 / 1000]: {'loss': 1.6683}
+2019-01-08 13:55:51,079 - algorithms.Algorithm - INFO   - ==> Iteration [  7][ 800 / 1000]: {'loss': 1.6646}
+2019-01-08 13:56:02,524 - algorithms.Algorithm - INFO   - ==> Iteration [  7][1000 / 1000]: {'loss': 1.6642}
+2019-01-08 13:56:02,530 - algorithms.Algorithm - INFO   - ==> Training stats: {'loss': 1.6642}
+2019-01-08 13:56:02,540 - algorithms.Algorithm - INFO   - Evaluating: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 13:56:02,540 - algorithms.Algorithm - INFO   - ==> Dataset: MiniImageNet_val [2000 batches]
+2019-01-08 13:57:18,878 - algorithms.Algorithm - INFO   - ==> Results: {'loss': 1.9454, 'AccuracyNovel_cnf': 0.373}
+2019-01-08 13:57:18,878 - algorithms.Algorithm - INFO   - ==> Evaluation stats: {'loss': 1.9454, 'AccuracyNovel_cnf': 0.373}
+2019-01-08 13:57:18,878 - algorithms.Algorithm - INFO   - Training epoch [  8 /  60]
+2019-01-08 13:57:18,878 - algorithms.Algorithm - INFO   - ==> Set to classifier optimizer lr = 0.1000000000
+2019-01-08 13:57:18,879 - algorithms.Algorithm - INFO   - Training: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 13:57:30,665 - algorithms.Algorithm - INFO   - ==> Iteration [  8][ 200 / 1000]: {'loss': 1.666}
+2019-01-08 13:57:42,139 - algorithms.Algorithm - INFO   - ==> Iteration [  8][ 400 / 1000]: {'loss': 1.6608}
+2019-01-08 13:57:53,659 - algorithms.Algorithm - INFO   - ==> Iteration [  8][ 600 / 1000]: {'loss': 1.6625}
+2019-01-08 13:58:05,250 - algorithms.Algorithm - INFO   - ==> Iteration [  8][ 800 / 1000]: {'loss': 1.6611}
+2019-01-08 13:58:16,862 - algorithms.Algorithm - INFO   - ==> Iteration [  8][1000 / 1000]: {'loss': 1.6619}
+2019-01-08 13:58:16,869 - algorithms.Algorithm - INFO   - ==> Training stats: {'loss': 1.6619}
+2019-01-08 13:58:16,878 - algorithms.Algorithm - INFO   - Evaluating: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 13:58:16,878 - algorithms.Algorithm - INFO   - ==> Dataset: MiniImageNet_val [2000 batches]
+2019-01-08 13:59:36,618 - algorithms.Algorithm - INFO   - ==> Results: {'loss': 1.9269, 'AccuracyNovel_cnf': 0.3734}
+2019-01-08 13:59:36,618 - algorithms.Algorithm - INFO   - ==> Evaluation stats: {'loss': 1.9269, 'AccuracyNovel_cnf': 0.3734}
+2019-01-08 13:59:36,618 - algorithms.Algorithm - INFO   - Training epoch [  9 /  60]
+2019-01-08 13:59:36,618 - algorithms.Algorithm - INFO   - ==> Set to classifier optimizer lr = 0.1000000000
+2019-01-08 13:59:36,618 - algorithms.Algorithm - INFO   - Training: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 13:59:48,125 - algorithms.Algorithm - INFO   - ==> Iteration [  9][ 200 / 1000]: {'loss': 1.6813}
+2019-01-08 13:59:59,591 - algorithms.Algorithm - INFO   - ==> Iteration [  9][ 400 / 1000]: {'loss': 1.6785}
+2019-01-08 14:00:11,104 - algorithms.Algorithm - INFO   - ==> Iteration [  9][ 600 / 1000]: {'loss': 1.6705}
+2019-01-08 14:00:22,549 - algorithms.Algorithm - INFO   - ==> Iteration [  9][ 800 / 1000]: {'loss': 1.6696}
+2019-01-08 14:00:34,196 - algorithms.Algorithm - INFO   - ==> Iteration [  9][1000 / 1000]: {'loss': 1.6654}
+2019-01-08 14:00:34,203 - algorithms.Algorithm - INFO   - ==> Training stats: {'loss': 1.6654}
+2019-01-08 14:00:34,212 - algorithms.Algorithm - INFO   - Evaluating: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 14:00:34,213 - algorithms.Algorithm - INFO   - ==> Dataset: MiniImageNet_val [2000 batches]
+2019-01-08 14:01:49,977 - algorithms.Algorithm - INFO   - ==> Results: {'loss': 1.9374, 'AccuracyNovel_cnf': 0.3743}
+2019-01-08 14:01:49,977 - algorithms.Algorithm - INFO   - ==> Evaluation stats: {'loss': 1.9374, 'AccuracyNovel_cnf': 0.3743}
+2019-01-08 14:01:49,977 - algorithms.Algorithm - INFO   - Training epoch [ 10 /  60]
+2019-01-08 14:01:49,977 - algorithms.Algorithm - INFO   - ==> Set to classifier optimizer lr = 0.1000000000
+2019-01-08 14:01:49,977 - algorithms.Algorithm - INFO   - Training: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 14:02:01,812 - algorithms.Algorithm - INFO   - ==> Iteration [ 10][ 200 / 1000]: {'loss': 1.6554}
+2019-01-08 14:02:13,302 - algorithms.Algorithm - INFO   - ==> Iteration [ 10][ 400 / 1000]: {'loss': 1.6575}
+2019-01-08 14:02:24,682 - algorithms.Algorithm - INFO   - ==> Iteration [ 10][ 600 / 1000]: {'loss': 1.6571}
+2019-01-08 14:02:36,303 - algorithms.Algorithm - INFO   - ==> Iteration [ 10][ 800 / 1000]: {'loss': 1.6602}
+2019-01-08 14:02:47,958 - algorithms.Algorithm - INFO   - ==> Iteration [ 10][1000 / 1000]: {'loss': 1.6606}
+2019-01-08 14:02:47,966 - algorithms.Algorithm - INFO   - ==> Training stats: {'loss': 1.6606}
+2019-01-08 14:02:47,975 - algorithms.Algorithm - INFO   - Evaluating: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 14:02:47,975 - algorithms.Algorithm - INFO   - ==> Dataset: MiniImageNet_val [2000 batches]
+2019-01-08 14:04:07,480 - algorithms.Algorithm - INFO   - ==> Results: {'loss': 1.9433, 'AccuracyNovel_cnf': 0.3752}
+2019-01-08 14:04:07,480 - algorithms.Algorithm - INFO   - ==> Evaluation stats: {'loss': 1.9433, 'AccuracyNovel_cnf': 0.3752}
+2019-01-08 14:04:07,480 - algorithms.Algorithm - INFO   - Training epoch [ 11 /  60]
+2019-01-08 14:04:07,480 - algorithms.Algorithm - INFO   - ==> Set to classifier optimizer lr = 0.1000000000
+2019-01-08 14:04:07,480 - algorithms.Algorithm - INFO   - Training: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 14:04:19,219 - algorithms.Algorithm - INFO   - ==> Iteration [ 11][ 200 / 1000]: {'loss': 1.6756}
+2019-01-08 14:04:30,818 - algorithms.Algorithm - INFO   - ==> Iteration [ 11][ 400 / 1000]: {'loss': 1.6715}
+2019-01-08 14:04:42,383 - algorithms.Algorithm - INFO   - ==> Iteration [ 11][ 600 / 1000]: {'loss': 1.6664}
+2019-01-08 14:04:53,972 - algorithms.Algorithm - INFO   - ==> Iteration [ 11][ 800 / 1000]: {'loss': 1.6674}
+2019-01-08 14:05:05,616 - algorithms.Algorithm - INFO   - ==> Iteration [ 11][1000 / 1000]: {'loss': 1.6671}
+2019-01-08 14:05:05,623 - algorithms.Algorithm - INFO   - ==> Training stats: {'loss': 1.6671}
+2019-01-08 14:05:05,632 - algorithms.Algorithm - INFO   - Evaluating: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 14:05:05,633 - algorithms.Algorithm - INFO   - ==> Dataset: MiniImageNet_val [2000 batches]
+2019-01-08 14:06:24,486 - algorithms.Algorithm - INFO   - ==> Results: {'loss': 1.9403, 'AccuracyNovel_cnf': 0.3771}
+2019-01-08 14:06:24,486 - algorithms.Algorithm - INFO   - ==> Evaluation stats: {'loss': 1.9403, 'AccuracyNovel_cnf': 0.3771}
+2019-01-08 14:06:24,554 - algorithms.Algorithm - INFO   - ==> Best results w.r.t. AccuracyNovel_cnf metric: epoch: 11 - {'loss': 1.9403, 'AccuracyNovel_cnf': 0.3771}
+2019-01-08 14:06:24,554 - algorithms.Algorithm - INFO   - Training epoch [ 12 /  60]
+2019-01-08 14:06:24,554 - algorithms.Algorithm - INFO   - ==> Set to classifier optimizer lr = 0.1000000000
+2019-01-08 14:06:24,555 - algorithms.Algorithm - INFO   - Training: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 14:06:36,121 - algorithms.Algorithm - INFO   - ==> Iteration [ 12][ 200 / 1000]: {'loss': 1.6559}
+2019-01-08 14:06:47,630 - algorithms.Algorithm - INFO   - ==> Iteration [ 12][ 400 / 1000]: {'loss': 1.6561}
+2019-01-08 14:06:59,234 - algorithms.Algorithm - INFO   - ==> Iteration [ 12][ 600 / 1000]: {'loss': 1.6584}
+2019-01-08 14:07:10,967 - algorithms.Algorithm - INFO   - ==> Iteration [ 12][ 800 / 1000]: {'loss': 1.6602}
+2019-01-08 14:07:22,717 - algorithms.Algorithm - INFO   - ==> Iteration [ 12][1000 / 1000]: {'loss': 1.6615}
+2019-01-08 14:07:22,723 - algorithms.Algorithm - INFO   - ==> Training stats: {'loss': 1.6615}
+2019-01-08 14:07:22,734 - algorithms.Algorithm - INFO   - Evaluating: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 14:07:22,735 - algorithms.Algorithm - INFO   - ==> Dataset: MiniImageNet_val [2000 batches]
+2019-01-08 14:08:39,960 - algorithms.Algorithm - INFO   - ==> Results: {'loss': 1.9368, 'AccuracyNovel_cnf': 0.3759}
+2019-01-08 14:08:39,961 - algorithms.Algorithm - INFO   - ==> Evaluation stats: {'loss': 1.9368, 'AccuracyNovel_cnf': 0.3759}
+2019-01-08 14:08:39,961 - algorithms.Algorithm - INFO   - Training epoch [ 13 /  60]
+2019-01-08 14:08:39,961 - algorithms.Algorithm - INFO   - ==> Set to classifier optimizer lr = 0.1000000000
+2019-01-08 14:08:39,961 - algorithms.Algorithm - INFO   - Training: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 14:08:51,804 - algorithms.Algorithm - INFO   - ==> Iteration [ 13][ 200 / 1000]: {'loss': 1.6734}
+2019-01-08 14:09:03,300 - algorithms.Algorithm - INFO   - ==> Iteration [ 13][ 400 / 1000]: {'loss': 1.6655}
+2019-01-08 14:09:14,851 - algorithms.Algorithm - INFO   - ==> Iteration [ 13][ 600 / 1000]: {'loss': 1.6657}
+2019-01-08 14:09:26,429 - algorithms.Algorithm - INFO   - ==> Iteration [ 13][ 800 / 1000]: {'loss': 1.6632}
+2019-01-08 14:09:38,039 - algorithms.Algorithm - INFO   - ==> Iteration [ 13][1000 / 1000]: {'loss': 1.6641}
+2019-01-08 14:09:38,046 - algorithms.Algorithm - INFO   - ==> Training stats: {'loss': 1.6641}
+2019-01-08 14:09:38,058 - algorithms.Algorithm - INFO   - Evaluating: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 14:09:38,058 - algorithms.Algorithm - INFO   - ==> Dataset: MiniImageNet_val [2000 batches]
+2019-01-08 14:10:59,236 - algorithms.Algorithm - INFO   - ==> Results: {'loss': 1.9356, 'AccuracyNovel_cnf': 0.3764}
+2019-01-08 14:10:59,236 - algorithms.Algorithm - INFO   - ==> Evaluation stats: {'loss': 1.9356, 'AccuracyNovel_cnf': 0.3764}
+2019-01-08 14:10:59,237 - algorithms.Algorithm - INFO   - Training epoch [ 14 /  60]
+2019-01-08 14:10:59,237 - algorithms.Algorithm - INFO   - ==> Set to classifier optimizer lr = 0.1000000000
+2019-01-08 14:10:59,237 - algorithms.Algorithm - INFO   - Training: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 14:11:10,767 - algorithms.Algorithm - INFO   - ==> Iteration [ 14][ 200 / 1000]: {'loss': 1.6594}
+2019-01-08 14:11:22,253 - algorithms.Algorithm - INFO   - ==> Iteration [ 14][ 400 / 1000]: {'loss': 1.6616}
+2019-01-08 14:11:33,859 - algorithms.Algorithm - INFO   - ==> Iteration [ 14][ 600 / 1000]: {'loss': 1.6685}
+2019-01-08 14:11:45,485 - algorithms.Algorithm - INFO   - ==> Iteration [ 14][ 800 / 1000]: {'loss': 1.6685}
+2019-01-08 14:11:57,246 - algorithms.Algorithm - INFO   - ==> Iteration [ 14][1000 / 1000]: {'loss': 1.6685}
+2019-01-08 14:11:57,252 - algorithms.Algorithm - INFO   - ==> Training stats: {'loss': 1.6685}
+2019-01-08 14:11:57,262 - algorithms.Algorithm - INFO   - Evaluating: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 14:11:57,262 - algorithms.Algorithm - INFO   - ==> Dataset: MiniImageNet_val [2000 batches]
+2019-01-08 14:13:14,699 - algorithms.Algorithm - INFO   - ==> Results: {'loss': 1.9373, 'AccuracyNovel_cnf': 0.3769}
+2019-01-08 14:13:14,699 - algorithms.Algorithm - INFO   - ==> Evaluation stats: {'loss': 1.9373, 'AccuracyNovel_cnf': 0.3769}
+2019-01-08 14:13:14,700 - algorithms.Algorithm - INFO   - Training epoch [ 15 /  60]
+2019-01-08 14:13:14,700 - algorithms.Algorithm - INFO   - ==> Set to classifier optimizer lr = 0.1000000000
+2019-01-08 14:13:14,700 - algorithms.Algorithm - INFO   - Training: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 14:13:26,364 - algorithms.Algorithm - INFO   - ==> Iteration [ 15][ 200 / 1000]: {'loss': 1.6751}
+2019-01-08 14:13:37,891 - algorithms.Algorithm - INFO   - ==> Iteration [ 15][ 400 / 1000]: {'loss': 1.6656}
+2019-01-08 14:13:49,481 - algorithms.Algorithm - INFO   - ==> Iteration [ 15][ 600 / 1000]: {'loss': 1.6643}
+2019-01-08 14:14:01,134 - algorithms.Algorithm - INFO   - ==> Iteration [ 15][ 800 / 1000]: {'loss': 1.6646}
+2019-01-08 14:14:12,804 - algorithms.Algorithm - INFO   - ==> Iteration [ 15][1000 / 1000]: {'loss': 1.6643}
+2019-01-08 14:14:12,814 - algorithms.Algorithm - INFO   - ==> Training stats: {'loss': 1.6643}
+2019-01-08 14:14:13,053 - algorithms.Algorithm - INFO   - Evaluating: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 14:14:13,054 - algorithms.Algorithm - INFO   - ==> Dataset: MiniImageNet_val [2000 batches]
+2019-01-08 14:15:29,864 - algorithms.Algorithm - INFO   - ==> Results: {'loss': 1.9366, 'AccuracyNovel_cnf': 0.3772}
+2019-01-08 14:15:29,865 - algorithms.Algorithm - INFO   - ==> Evaluation stats: {'loss': 1.9366, 'AccuracyNovel_cnf': 0.3772}
+2019-01-08 14:15:29,879 - algorithms.Algorithm - INFO   - ==> Best results w.r.t. AccuracyNovel_cnf metric: epoch: 15 - {'loss': 1.9366, 'AccuracyNovel_cnf': 0.3772}
+2019-01-08 14:15:29,879 - algorithms.Algorithm - INFO   - Training epoch [ 16 /  60]
+2019-01-08 14:15:29,880 - algorithms.Algorithm - INFO   - ==> Set to classifier optimizer lr = 0.1000000000
+2019-01-08 14:15:29,880 - algorithms.Algorithm - INFO   - Training: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 14:15:41,738 - algorithms.Algorithm - INFO   - ==> Iteration [ 16][ 200 / 1000]: {'loss': 1.6738}
+2019-01-08 14:15:53,269 - algorithms.Algorithm - INFO   - ==> Iteration [ 16][ 400 / 1000]: {'loss': 1.6677}
+2019-01-08 14:16:04,851 - algorithms.Algorithm - INFO   - ==> Iteration [ 16][ 600 / 1000]: {'loss': 1.6685}
+2019-01-08 14:16:16,183 - algorithms.Algorithm - INFO   - ==> Iteration [ 16][ 800 / 1000]: {'loss': 1.6674}
+2019-01-08 14:16:27,898 - algorithms.Algorithm - INFO   - ==> Iteration [ 16][1000 / 1000]: {'loss': 1.6686}
+2019-01-08 14:16:27,909 - algorithms.Algorithm - INFO   - ==> Training stats: {'loss': 1.6686}
+2019-01-08 14:16:27,918 - algorithms.Algorithm - INFO   - Evaluating: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 14:16:27,918 - algorithms.Algorithm - INFO   - ==> Dataset: MiniImageNet_val [2000 batches]
+2019-01-08 14:17:50,489 - algorithms.Algorithm - INFO   - ==> Results: {'loss': 1.9349, 'AccuracyNovel_cnf': 0.3738}
+2019-01-08 14:17:50,489 - algorithms.Algorithm - INFO   - ==> Evaluation stats: {'loss': 1.9349, 'AccuracyNovel_cnf': 0.3738}
+2019-01-08 14:17:50,489 - algorithms.Algorithm - INFO   - Training epoch [ 17 /  60]
+2019-01-08 14:17:50,490 - algorithms.Algorithm - INFO   - ==> Set to classifier optimizer lr = 0.1000000000
+2019-01-08 14:17:50,490 - algorithms.Algorithm - INFO   - Training: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 14:18:02,209 - algorithms.Algorithm - INFO   - ==> Iteration [ 17][ 200 / 1000]: {'loss': 1.6627}
+2019-01-08 14:18:13,756 - algorithms.Algorithm - INFO   - ==> Iteration [ 17][ 400 / 1000]: {'loss': 1.6582}
+2019-01-08 14:18:25,385 - algorithms.Algorithm - INFO   - ==> Iteration [ 17][ 600 / 1000]: {'loss': 1.6601}
+2019-01-08 14:18:37,092 - algorithms.Algorithm - INFO   - ==> Iteration [ 17][ 800 / 1000]: {'loss': 1.6601}
+2019-01-08 14:18:48,824 - algorithms.Algorithm - INFO   - ==> Iteration [ 17][1000 / 1000]: {'loss': 1.662}
+2019-01-08 14:18:48,832 - algorithms.Algorithm - INFO   - ==> Training stats: {'loss': 1.662}
+2019-01-08 14:18:48,941 - algorithms.Algorithm - INFO   - Evaluating: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 14:18:48,942 - algorithms.Algorithm - INFO   - ==> Dataset: MiniImageNet_val [2000 batches]
+2019-01-08 14:20:10,090 - algorithms.Algorithm - INFO   - ==> Results: {'loss': 1.9443, 'AccuracyNovel_cnf': 0.3724}
+2019-01-08 14:20:10,091 - algorithms.Algorithm - INFO   - ==> Evaluation stats: {'loss': 1.9443, 'AccuracyNovel_cnf': 0.3724}
+2019-01-08 14:20:10,091 - algorithms.Algorithm - INFO   - Training epoch [ 18 /  60]
+2019-01-08 14:20:10,091 - algorithms.Algorithm - INFO   - ==> Set to classifier optimizer lr = 0.1000000000
+2019-01-08 14:20:10,091 - algorithms.Algorithm - INFO   - Training: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 14:20:21,585 - algorithms.Algorithm - INFO   - ==> Iteration [ 18][ 200 / 1000]: {'loss': 1.6665}
+2019-01-08 14:20:32,745 - algorithms.Algorithm - INFO   - ==> Iteration [ 18][ 400 / 1000]: {'loss': 1.6689}
+2019-01-08 14:20:43,960 - algorithms.Algorithm - INFO   - ==> Iteration [ 18][ 600 / 1000]: {'loss': 1.6703}
+2019-01-08 14:20:55,188 - algorithms.Algorithm - INFO   - ==> Iteration [ 18][ 800 / 1000]: {'loss': 1.6674}
+2019-01-08 14:21:06,430 - algorithms.Algorithm - INFO   - ==> Iteration [ 18][1000 / 1000]: {'loss': 1.669}
+2019-01-08 14:21:06,437 - algorithms.Algorithm - INFO   - ==> Training stats: {'loss': 1.669}
+2019-01-08 14:21:06,450 - algorithms.Algorithm - INFO   - Evaluating: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 14:21:06,451 - algorithms.Algorithm - INFO   - ==> Dataset: MiniImageNet_val [2000 batches]
+2019-01-08 14:22:26,422 - algorithms.Algorithm - INFO   - ==> Results: {'loss': 1.9367, 'AccuracyNovel_cnf': 0.3739}
+2019-01-08 14:22:26,422 - algorithms.Algorithm - INFO   - ==> Evaluation stats: {'loss': 1.9367, 'AccuracyNovel_cnf': 0.3739}
+2019-01-08 14:22:26,422 - algorithms.Algorithm - INFO   - Training epoch [ 19 /  60]
+2019-01-08 14:22:26,422 - algorithms.Algorithm - INFO   - ==> Set to classifier optimizer lr = 0.1000000000
+2019-01-08 14:22:26,422 - algorithms.Algorithm - INFO   - Training: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 14:22:37,952 - algorithms.Algorithm - INFO   - ==> Iteration [ 19][ 200 / 1000]: {'loss': 1.6679}
+2019-01-08 14:22:49,189 - algorithms.Algorithm - INFO   - ==> Iteration [ 19][ 400 / 1000]: {'loss': 1.6662}
+2019-01-08 14:23:00,445 - algorithms.Algorithm - INFO   - ==> Iteration [ 19][ 600 / 1000]: {'loss': 1.6639}
+2019-01-08 14:23:11,714 - algorithms.Algorithm - INFO   - ==> Iteration [ 19][ 800 / 1000]: {'loss': 1.6645}
+2019-01-08 14:23:22,943 - algorithms.Algorithm - INFO   - ==> Iteration [ 19][1000 / 1000]: {'loss': 1.6625}
+2019-01-08 14:23:22,954 - algorithms.Algorithm - INFO   - ==> Training stats: {'loss': 1.6625}
+2019-01-08 14:23:22,962 - algorithms.Algorithm - INFO   - Evaluating: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 14:23:22,962 - algorithms.Algorithm - INFO   - ==> Dataset: MiniImageNet_val [2000 batches]
+2019-01-08 14:24:42,887 - algorithms.Algorithm - INFO   - ==> Results: {'loss': 1.9383, 'AccuracyNovel_cnf': 0.3744}
+2019-01-08 14:24:42,887 - algorithms.Algorithm - INFO   - ==> Evaluation stats: {'loss': 1.9383, 'AccuracyNovel_cnf': 0.3744}
+2019-01-08 14:24:42,887 - algorithms.Algorithm - INFO   - Training epoch [ 20 /  60]
+2019-01-08 14:24:42,887 - algorithms.Algorithm - INFO   - ==> Set to classifier optimizer lr = 0.1000000000
+2019-01-08 14:24:42,887 - algorithms.Algorithm - INFO   - Training: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 14:24:54,401 - algorithms.Algorithm - INFO   - ==> Iteration [ 20][ 200 / 1000]: {'loss': 1.6552}
+2019-01-08 14:25:05,587 - algorithms.Algorithm - INFO   - ==> Iteration [ 20][ 400 / 1000]: {'loss': 1.6588}
+2019-01-08 14:25:16,801 - algorithms.Algorithm - INFO   - ==> Iteration [ 20][ 600 / 1000]: {'loss': 1.6623}
+2019-01-08 14:25:28,021 - algorithms.Algorithm - INFO   - ==> Iteration [ 20][ 800 / 1000]: {'loss': 1.6607}
+2019-01-08 14:25:39,310 - algorithms.Algorithm - INFO   - ==> Iteration [ 20][1000 / 1000]: {'loss': 1.6637}
+2019-01-08 14:25:39,318 - algorithms.Algorithm - INFO   - ==> Training stats: {'loss': 1.6637}
+2019-01-08 14:25:40,046 - algorithms.Algorithm - INFO   - Evaluating: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 14:25:40,047 - algorithms.Algorithm - INFO   - ==> Dataset: MiniImageNet_val [2000 batches]
+2019-01-08 14:26:59,297 - algorithms.Algorithm - INFO   - ==> Results: {'loss': 1.9315, 'AccuracyNovel_cnf': 0.3761}
+2019-01-08 14:26:59,297 - algorithms.Algorithm - INFO   - ==> Evaluation stats: {'loss': 1.9315, 'AccuracyNovel_cnf': 0.3761}
+2019-01-08 14:26:59,297 - algorithms.Algorithm - INFO   - Training epoch [ 21 /  60]
+2019-01-08 14:26:59,297 - algorithms.Algorithm - INFO   - ==> Set to classifier optimizer lr = 0.0060000000
+2019-01-08 14:26:59,297 - algorithms.Algorithm - INFO   - Training: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 14:27:10,803 - algorithms.Algorithm - INFO   - ==> Iteration [ 21][ 200 / 1000]: {'loss': 1.6466}
+2019-01-08 14:27:21,975 - algorithms.Algorithm - INFO   - ==> Iteration [ 21][ 400 / 1000]: {'loss': 1.6487}
+2019-01-08 14:27:33,184 - algorithms.Algorithm - INFO   - ==> Iteration [ 21][ 600 / 1000]: {'loss': 1.646}
+2019-01-08 14:27:44,435 - algorithms.Algorithm - INFO   - ==> Iteration [ 21][ 800 / 1000]: {'loss': 1.6422}
+2019-01-08 14:27:55,691 - algorithms.Algorithm - INFO   - ==> Iteration [ 21][1000 / 1000]: {'loss': 1.6401}
+2019-01-08 14:27:55,706 - algorithms.Algorithm - INFO   - ==> Training stats: {'loss': 1.6401}
+2019-01-08 14:27:55,715 - algorithms.Algorithm - INFO   - Evaluating: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 14:27:55,716 - algorithms.Algorithm - INFO   - ==> Dataset: MiniImageNet_val [2000 batches]
+2019-01-08 14:29:13,007 - algorithms.Algorithm - INFO   - ==> Results: {'loss': 1.9013, 'AccuracyNovel_cnf': 0.3761}
+2019-01-08 14:29:13,008 - algorithms.Algorithm - INFO   - ==> Evaluation stats: {'loss': 1.9013, 'AccuracyNovel_cnf': 0.3761}
+2019-01-08 14:29:13,008 - algorithms.Algorithm - INFO   - Training epoch [ 22 /  60]
+2019-01-08 14:29:13,008 - algorithms.Algorithm - INFO   - ==> Set to classifier optimizer lr = 0.0060000000
+2019-01-08 14:29:13,008 - algorithms.Algorithm - INFO   - Training: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 14:29:24,664 - algorithms.Algorithm - INFO   - ==> Iteration [ 22][ 200 / 1000]: {'loss': 1.6218}
+2019-01-08 14:29:35,956 - algorithms.Algorithm - INFO   - ==> Iteration [ 22][ 400 / 1000]: {'loss': 1.6316}
+2019-01-08 14:29:47,262 - algorithms.Algorithm - INFO   - ==> Iteration [ 22][ 600 / 1000]: {'loss': 1.6293}
+2019-01-08 14:29:58,536 - algorithms.Algorithm - INFO   - ==> Iteration [ 22][ 800 / 1000]: {'loss': 1.6314}
+2019-01-08 14:30:09,814 - algorithms.Algorithm - INFO   - ==> Iteration [ 22][1000 / 1000]: {'loss': 1.6301}
+2019-01-08 14:30:09,820 - algorithms.Algorithm - INFO   - ==> Training stats: {'loss': 1.6301}
+2019-01-08 14:30:09,831 - algorithms.Algorithm - INFO   - Evaluating: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 14:30:09,831 - algorithms.Algorithm - INFO   - ==> Dataset: MiniImageNet_val [2000 batches]
+2019-01-08 14:31:30,566 - algorithms.Algorithm - INFO   - ==> Results: {'loss': 1.8966, 'AccuracyNovel_cnf': 0.3773}
+2019-01-08 14:31:30,567 - algorithms.Algorithm - INFO   - ==> Evaluation stats: {'loss': 1.8966, 'AccuracyNovel_cnf': 0.3773}
+2019-01-08 14:31:30,577 - algorithms.Algorithm - INFO   - ==> Best results w.r.t. AccuracyNovel_cnf metric: epoch: 22 - {'loss': 1.8966, 'AccuracyNovel_cnf': 0.3773}
+2019-01-08 14:31:30,578 - algorithms.Algorithm - INFO   - Training epoch [ 23 /  60]
+2019-01-08 14:31:30,578 - algorithms.Algorithm - INFO   - ==> Set to classifier optimizer lr = 0.0060000000
+2019-01-08 14:31:30,578 - algorithms.Algorithm - INFO   - Training: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 14:31:42,094 - algorithms.Algorithm - INFO   - ==> Iteration [ 23][ 200 / 1000]: {'loss': 1.6236}
+2019-01-08 14:31:53,302 - algorithms.Algorithm - INFO   - ==> Iteration [ 23][ 400 / 1000]: {'loss': 1.621}
+2019-01-08 14:32:04,538 - algorithms.Algorithm - INFO   - ==> Iteration [ 23][ 600 / 1000]: {'loss': 1.6217}
+2019-01-08 14:32:15,788 - algorithms.Algorithm - INFO   - ==> Iteration [ 23][ 800 / 1000]: {'loss': 1.6213}
+2019-01-08 14:32:27,102 - algorithms.Algorithm - INFO   - ==> Iteration [ 23][1000 / 1000]: {'loss': 1.6181}
+2019-01-08 14:32:27,108 - algorithms.Algorithm - INFO   - ==> Training stats: {'loss': 1.6181}
+2019-01-08 14:32:27,389 - algorithms.Algorithm - INFO   - Evaluating: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 14:32:27,390 - algorithms.Algorithm - INFO   - ==> Dataset: MiniImageNet_val [2000 batches]
+2019-01-08 14:33:45,846 - algorithms.Algorithm - INFO   - ==> Results: {'loss': 1.8923, 'AccuracyNovel_cnf': 0.3759}
+2019-01-08 14:33:45,847 - algorithms.Algorithm - INFO   - ==> Evaluation stats: {'loss': 1.8923, 'AccuracyNovel_cnf': 0.3759}
+2019-01-08 14:33:45,848 - algorithms.Algorithm - INFO   - Training epoch [ 24 /  60]
+2019-01-08 14:33:45,848 - algorithms.Algorithm - INFO   - ==> Set to classifier optimizer lr = 0.0060000000
+2019-01-08 14:33:45,848 - algorithms.Algorithm - INFO   - Training: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 14:33:57,285 - algorithms.Algorithm - INFO   - ==> Iteration [ 24][ 200 / 1000]: {'loss': 1.6185}
+2019-01-08 14:34:08,468 - algorithms.Algorithm - INFO   - ==> Iteration [ 24][ 400 / 1000]: {'loss': 1.621}
+2019-01-08 14:34:19,730 - algorithms.Algorithm - INFO   - ==> Iteration [ 24][ 600 / 1000]: {'loss': 1.6207}
+2019-01-08 14:34:30,942 - algorithms.Algorithm - INFO   - ==> Iteration [ 24][ 800 / 1000]: {'loss': 1.6167}
+2019-01-08 14:34:42,189 - algorithms.Algorithm - INFO   - ==> Iteration [ 24][1000 / 1000]: {'loss': 1.6147}
+2019-01-08 14:34:42,195 - algorithms.Algorithm - INFO   - ==> Training stats: {'loss': 1.6147}
+2019-01-08 14:34:42,407 - algorithms.Algorithm - INFO   - Evaluating: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 14:34:42,407 - algorithms.Algorithm - INFO   - ==> Dataset: MiniImageNet_val [2000 batches]
+2019-01-08 14:36:02,146 - algorithms.Algorithm - INFO   - ==> Results: {'loss': 1.8915, 'AccuracyNovel_cnf': 0.3752}
+2019-01-08 14:36:02,147 - algorithms.Algorithm - INFO   - ==> Evaluation stats: {'loss': 1.8915, 'AccuracyNovel_cnf': 0.3752}
+2019-01-08 14:36:02,147 - algorithms.Algorithm - INFO   - Training epoch [ 25 /  60]
+2019-01-08 14:36:02,147 - algorithms.Algorithm - INFO   - ==> Set to classifier optimizer lr = 0.0060000000
+2019-01-08 14:36:02,147 - algorithms.Algorithm - INFO   - Training: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 14:36:13,693 - algorithms.Algorithm - INFO   - ==> Iteration [ 25][ 200 / 1000]: {'loss': 1.6048}
+2019-01-08 14:36:24,889 - algorithms.Algorithm - INFO   - ==> Iteration [ 25][ 400 / 1000]: {'loss': 1.6113}
+2019-01-08 14:36:36,102 - algorithms.Algorithm - INFO   - ==> Iteration [ 25][ 600 / 1000]: {'loss': 1.612}
+2019-01-08 14:36:47,340 - algorithms.Algorithm - INFO   - ==> Iteration [ 25][ 800 / 1000]: {'loss': 1.6142}
+2019-01-08 14:36:58,584 - algorithms.Algorithm - INFO   - ==> Iteration [ 25][1000 / 1000]: {'loss': 1.6146}
+2019-01-08 14:36:58,594 - algorithms.Algorithm - INFO   - ==> Training stats: {'loss': 1.6146}
+2019-01-08 14:36:58,604 - algorithms.Algorithm - INFO   - Evaluating: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 14:36:58,604 - algorithms.Algorithm - INFO   - ==> Dataset: MiniImageNet_val [2000 batches]
+2019-01-08 14:38:16,180 - algorithms.Algorithm - INFO   - ==> Results: {'loss': 1.8882, 'AccuracyNovel_cnf': 0.3766}
+2019-01-08 14:38:16,180 - algorithms.Algorithm - INFO   - ==> Evaluation stats: {'loss': 1.8882, 'AccuracyNovel_cnf': 0.3766}
+2019-01-08 14:38:16,180 - algorithms.Algorithm - INFO   - Training epoch [ 26 /  60]
+2019-01-08 14:38:16,180 - algorithms.Algorithm - INFO   - ==> Set to classifier optimizer lr = 0.0060000000
+2019-01-08 14:38:16,181 - algorithms.Algorithm - INFO   - Training: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 14:38:27,818 - algorithms.Algorithm - INFO   - ==> Iteration [ 26][ 200 / 1000]: {'loss': 1.6121}
+2019-01-08 14:38:39,063 - algorithms.Algorithm - INFO   - ==> Iteration [ 26][ 400 / 1000]: {'loss': 1.6135}
+2019-01-08 14:38:50,294 - algorithms.Algorithm - INFO   - ==> Iteration [ 26][ 600 / 1000]: {'loss': 1.613}
+2019-01-08 14:39:01,559 - algorithms.Algorithm - INFO   - ==> Iteration [ 26][ 800 / 1000]: {'loss': 1.6104}
+2019-01-08 14:39:12,841 - algorithms.Algorithm - INFO   - ==> Iteration [ 26][1000 / 1000]: {'loss': 1.6073}
+2019-01-08 14:39:12,847 - algorithms.Algorithm - INFO   - ==> Training stats: {'loss': 1.6073}
+2019-01-08 14:39:12,857 - algorithms.Algorithm - INFO   - Evaluating: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 14:39:12,858 - algorithms.Algorithm - INFO   - ==> Dataset: MiniImageNet_val [2000 batches]
+2019-01-08 14:40:33,040 - algorithms.Algorithm - INFO   - ==> Results: {'loss': 1.8901, 'AccuracyNovel_cnf': 0.3751}
+2019-01-08 14:40:33,041 - algorithms.Algorithm - INFO   - ==> Evaluation stats: {'loss': 1.8901, 'AccuracyNovel_cnf': 0.3751}
+2019-01-08 14:40:33,041 - algorithms.Algorithm - INFO   - Training epoch [ 27 /  60]
+2019-01-08 14:40:33,041 - algorithms.Algorithm - INFO   - ==> Set to classifier optimizer lr = 0.0060000000
+2019-01-08 14:40:33,041 - algorithms.Algorithm - INFO   - Training: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 14:40:44,516 - algorithms.Algorithm - INFO   - ==> Iteration [ 27][ 200 / 1000]: {'loss': 1.6131}
+2019-01-08 14:40:55,699 - algorithms.Algorithm - INFO   - ==> Iteration [ 27][ 400 / 1000]: {'loss': 1.6098}
+2019-01-08 14:41:06,895 - algorithms.Algorithm - INFO   - ==> Iteration [ 27][ 600 / 1000]: {'loss': 1.6129}
+2019-01-08 14:41:18,106 - algorithms.Algorithm - INFO   - ==> Iteration [ 27][ 800 / 1000]: {'loss': 1.6109}
+2019-01-08 14:41:29,337 - algorithms.Algorithm - INFO   - ==> Iteration [ 27][1000 / 1000]: {'loss': 1.6122}
+2019-01-08 14:41:29,342 - algorithms.Algorithm - INFO   - ==> Training stats: {'loss': 1.6122}
+2019-01-08 14:41:29,353 - algorithms.Algorithm - INFO   - Evaluating: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 14:41:29,353 - algorithms.Algorithm - INFO   - ==> Dataset: MiniImageNet_val [2000 batches]
+2019-01-08 14:42:47,804 - algorithms.Algorithm - INFO   - ==> Results: {'loss': 1.8848, 'AccuracyNovel_cnf': 0.376}
+2019-01-08 14:42:47,804 - algorithms.Algorithm - INFO   - ==> Evaluation stats: {'loss': 1.8848, 'AccuracyNovel_cnf': 0.376}
+2019-01-08 14:42:47,804 - algorithms.Algorithm - INFO   - Training epoch [ 28 /  60]
+2019-01-08 14:42:47,804 - algorithms.Algorithm - INFO   - ==> Set to classifier optimizer lr = 0.0060000000
+2019-01-08 14:42:47,804 - algorithms.Algorithm - INFO   - Training: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 14:42:59,384 - algorithms.Algorithm - INFO   - ==> Iteration [ 28][ 200 / 1000]: {'loss': 1.5936}
+2019-01-08 14:43:10,566 - algorithms.Algorithm - INFO   - ==> Iteration [ 28][ 400 / 1000]: {'loss': 1.5958}
+2019-01-08 14:43:21,791 - algorithms.Algorithm - INFO   - ==> Iteration [ 28][ 600 / 1000]: {'loss': 1.6058}
+2019-01-08 14:43:33,053 - algorithms.Algorithm - INFO   - ==> Iteration [ 28][ 800 / 1000]: {'loss': 1.6071}
+2019-01-08 14:43:44,346 - algorithms.Algorithm - INFO   - ==> Iteration [ 28][1000 / 1000]: {'loss': 1.607}
+2019-01-08 14:43:44,352 - algorithms.Algorithm - INFO   - ==> Training stats: {'loss': 1.607}
+2019-01-08 14:43:44,362 - algorithms.Algorithm - INFO   - Evaluating: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 14:43:44,362 - algorithms.Algorithm - INFO   - ==> Dataset: MiniImageNet_val [2000 batches]
+2019-01-08 14:45:00,961 - algorithms.Algorithm - INFO   - ==> Results: {'loss': 1.8833, 'AccuracyNovel_cnf': 0.3755}
+2019-01-08 14:45:00,962 - algorithms.Algorithm - INFO   - ==> Evaluation stats: {'loss': 1.8833, 'AccuracyNovel_cnf': 0.3755}
+2019-01-08 14:45:00,962 - algorithms.Algorithm - INFO   - Training epoch [ 29 /  60]
+2019-01-08 14:45:00,963 - algorithms.Algorithm - INFO   - ==> Set to classifier optimizer lr = 0.0060000000
+2019-01-08 14:45:00,963 - algorithms.Algorithm - INFO   - Training: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 14:45:12,706 - algorithms.Algorithm - INFO   - ==> Iteration [ 29][ 200 / 1000]: {'loss': 1.6103}
+2019-01-08 14:45:24,005 - algorithms.Algorithm - INFO   - ==> Iteration [ 29][ 400 / 1000]: {'loss': 1.6063}
+2019-01-08 14:45:35,401 - algorithms.Algorithm - INFO   - ==> Iteration [ 29][ 600 / 1000]: {'loss': 1.6067}
+2019-01-08 14:45:50,090 - algorithms.Algorithm - INFO   - ==> Iteration [ 29][ 800 / 1000]: {'loss': 1.6083}
+2019-01-08 14:46:01,725 - algorithms.Algorithm - INFO   - ==> Iteration [ 29][1000 / 1000]: {'loss': 1.6076}
+2019-01-08 14:46:01,741 - algorithms.Algorithm - INFO   - ==> Training stats: {'loss': 1.6076}
+2019-01-08 14:46:01,846 - algorithms.Algorithm - INFO   - Evaluating: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 14:46:01,846 - algorithms.Algorithm - INFO   - ==> Dataset: MiniImageNet_val [2000 batches]
+2019-01-08 14:47:22,551 - algorithms.Algorithm - INFO   - ==> Results: {'loss': 1.8844, 'AccuracyNovel_cnf': 0.3748}
+2019-01-08 14:47:22,552 - algorithms.Algorithm - INFO   - ==> Evaluation stats: {'loss': 1.8844, 'AccuracyNovel_cnf': 0.3748}
+2019-01-08 14:47:22,552 - algorithms.Algorithm - INFO   - Training epoch [ 30 /  60]
+2019-01-08 14:47:22,552 - algorithms.Algorithm - INFO   - ==> Set to classifier optimizer lr = 0.0060000000
+2019-01-08 14:47:22,552 - algorithms.Algorithm - INFO   - Training: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 14:47:35,253 - algorithms.Algorithm - INFO   - ==> Iteration [ 30][ 200 / 1000]: {'loss': 1.6103}
+2019-01-08 14:47:46,725 - algorithms.Algorithm - INFO   - ==> Iteration [ 30][ 400 / 1000]: {'loss': 1.6076}
+2019-01-08 14:47:58,244 - algorithms.Algorithm - INFO   - ==> Iteration [ 30][ 600 / 1000]: {'loss': 1.6147}
+2019-01-08 14:48:09,688 - algorithms.Algorithm - INFO   - ==> Iteration [ 30][ 800 / 1000]: {'loss': 1.6099}
+2019-01-08 14:48:21,148 - algorithms.Algorithm - INFO   - ==> Iteration [ 30][1000 / 1000]: {'loss': 1.6075}
+2019-01-08 14:48:21,155 - algorithms.Algorithm - INFO   - ==> Training stats: {'loss': 1.6075}
+2019-01-08 14:48:21,166 - algorithms.Algorithm - INFO   - Evaluating: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 14:48:21,166 - algorithms.Algorithm - INFO   - ==> Dataset: MiniImageNet_val [2000 batches]
+2019-01-08 14:49:37,702 - algorithms.Algorithm - INFO   - ==> Results: {'loss': 1.8828, 'AccuracyNovel_cnf': 0.3769}
+2019-01-08 14:49:37,702 - algorithms.Algorithm - INFO   - ==> Evaluation stats: {'loss': 1.8828, 'AccuracyNovel_cnf': 0.3769}
+2019-01-08 14:49:37,702 - algorithms.Algorithm - INFO   - Training epoch [ 31 /  60]
+2019-01-08 14:49:37,702 - algorithms.Algorithm - INFO   - ==> Set to classifier optimizer lr = 0.0060000000
+2019-01-08 14:49:37,702 - algorithms.Algorithm - INFO   - Training: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 14:49:49,503 - algorithms.Algorithm - INFO   - ==> Iteration [ 31][ 200 / 1000]: {'loss': 1.5875}
+2019-01-08 14:50:00,933 - algorithms.Algorithm - INFO   - ==> Iteration [ 31][ 400 / 1000]: {'loss': 1.6015}
+2019-01-08 14:50:12,356 - algorithms.Algorithm - INFO   - ==> Iteration [ 31][ 600 / 1000]: {'loss': 1.6031}
+2019-01-08 14:50:23,782 - algorithms.Algorithm - INFO   - ==> Iteration [ 31][ 800 / 1000]: {'loss': 1.6023}
+2019-01-08 14:50:35,222 - algorithms.Algorithm - INFO   - ==> Iteration [ 31][1000 / 1000]: {'loss': 1.6029}
+2019-01-08 14:50:35,236 - algorithms.Algorithm - INFO   - ==> Training stats: {'loss': 1.6029}
+2019-01-08 14:50:35,248 - algorithms.Algorithm - INFO   - Evaluating: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 14:50:35,248 - algorithms.Algorithm - INFO   - ==> Dataset: MiniImageNet_val [2000 batches]
+2019-01-08 14:51:51,563 - algorithms.Algorithm - INFO   - ==> Results: {'loss': 1.883, 'AccuracyNovel_cnf': 0.3758}
+2019-01-08 14:51:51,564 - algorithms.Algorithm - INFO   - ==> Evaluation stats: {'loss': 1.883, 'AccuracyNovel_cnf': 0.3758}
+2019-01-08 14:51:51,564 - algorithms.Algorithm - INFO   - Training epoch [ 32 /  60]
+2019-01-08 14:51:51,564 - algorithms.Algorithm - INFO   - ==> Set to classifier optimizer lr = 0.0060000000
+2019-01-08 14:51:51,564 - algorithms.Algorithm - INFO   - Training: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 14:52:03,323 - algorithms.Algorithm - INFO   - ==> Iteration [ 32][ 200 / 1000]: {'loss': 1.5991}
+2019-01-08 14:52:14,746 - algorithms.Algorithm - INFO   - ==> Iteration [ 32][ 400 / 1000]: {'loss': 1.6021}
+2019-01-08 14:52:26,144 - algorithms.Algorithm - INFO   - ==> Iteration [ 32][ 600 / 1000]: {'loss': 1.6036}
+2019-01-08 14:52:37,556 - algorithms.Algorithm - INFO   - ==> Iteration [ 32][ 800 / 1000]: {'loss': 1.6028}
+2019-01-08 14:52:48,975 - algorithms.Algorithm - INFO   - ==> Iteration [ 32][1000 / 1000]: {'loss': 1.6011}
+2019-01-08 14:52:48,981 - algorithms.Algorithm - INFO   - ==> Training stats: {'loss': 1.6011}
+2019-01-08 14:52:49,061 - algorithms.Algorithm - INFO   - Evaluating: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 14:52:49,061 - algorithms.Algorithm - INFO   - ==> Dataset: MiniImageNet_val [2000 batches]
+2019-01-08 14:54:08,310 - algorithms.Algorithm - INFO   - ==> Results: {'loss': 1.8828, 'AccuracyNovel_cnf': 0.3759}
+2019-01-08 14:54:08,310 - algorithms.Algorithm - INFO   - ==> Evaluation stats: {'loss': 1.8828, 'AccuracyNovel_cnf': 0.3759}
+2019-01-08 14:54:08,310 - algorithms.Algorithm - INFO   - Training epoch [ 33 /  60]
+2019-01-08 14:54:08,310 - algorithms.Algorithm - INFO   - ==> Set to classifier optimizer lr = 0.0060000000
+2019-01-08 14:54:08,310 - algorithms.Algorithm - INFO   - Training: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 14:54:20,389 - algorithms.Algorithm - INFO   - ==> Iteration [ 33][ 200 / 1000]: {'loss': 1.6131}
+2019-01-08 14:54:32,125 - algorithms.Algorithm - INFO   - ==> Iteration [ 33][ 400 / 1000]: {'loss': 1.6004}
+2019-01-08 14:54:43,903 - algorithms.Algorithm - INFO   - ==> Iteration [ 33][ 600 / 1000]: {'loss': 1.6034}
+2019-01-08 14:54:55,695 - algorithms.Algorithm - INFO   - ==> Iteration [ 33][ 800 / 1000]: {'loss': 1.6041}
+2019-01-08 14:55:07,465 - algorithms.Algorithm - INFO   - ==> Iteration [ 33][1000 / 1000]: {'loss': 1.6053}
+2019-01-08 14:55:07,473 - algorithms.Algorithm - INFO   - ==> Training stats: {'loss': 1.6053}
+2019-01-08 14:55:07,719 - algorithms.Algorithm - INFO   - Evaluating: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 14:55:07,719 - algorithms.Algorithm - INFO   - ==> Dataset: MiniImageNet_val [2000 batches]
+2019-01-08 14:56:25,338 - algorithms.Algorithm - INFO   - ==> Results: {'loss': 1.8839, 'AccuracyNovel_cnf': 0.3745}
+2019-01-08 14:56:25,338 - algorithms.Algorithm - INFO   - ==> Evaluation stats: {'loss': 1.8839, 'AccuracyNovel_cnf': 0.3745}
+2019-01-08 14:56:25,338 - algorithms.Algorithm - INFO   - Training epoch [ 34 /  60]
+2019-01-08 14:56:25,338 - algorithms.Algorithm - INFO   - ==> Set to classifier optimizer lr = 0.0060000000
+2019-01-08 14:56:25,338 - algorithms.Algorithm - INFO   - Training: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 14:56:37,173 - algorithms.Algorithm - INFO   - ==> Iteration [ 34][ 200 / 1000]: {'loss': 1.6036}
+2019-01-08 14:56:48,605 - algorithms.Algorithm - INFO   - ==> Iteration [ 34][ 400 / 1000]: {'loss': 1.6057}
+2019-01-08 14:57:00,079 - algorithms.Algorithm - INFO   - ==> Iteration [ 34][ 600 / 1000]: {'loss': 1.6031}
+2019-01-08 14:57:11,518 - algorithms.Algorithm - INFO   - ==> Iteration [ 34][ 800 / 1000]: {'loss': 1.6028}
+2019-01-08 14:57:22,950 - algorithms.Algorithm - INFO   - ==> Iteration [ 34][1000 / 1000]: {'loss': 1.6034}
+2019-01-08 14:57:22,958 - algorithms.Algorithm - INFO   - ==> Training stats: {'loss': 1.6034}
+2019-01-08 14:57:22,968 - algorithms.Algorithm - INFO   - Evaluating: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 14:57:22,968 - algorithms.Algorithm - INFO   - ==> Dataset: MiniImageNet_val [2000 batches]
+2019-01-08 14:58:40,058 - algorithms.Algorithm - INFO   - ==> Results: {'loss': 1.8828, 'AccuracyNovel_cnf': 0.3749}
+2019-01-08 14:58:40,059 - algorithms.Algorithm - INFO   - ==> Evaluation stats: {'loss': 1.8828, 'AccuracyNovel_cnf': 0.3749}
+2019-01-08 14:58:40,059 - algorithms.Algorithm - INFO   - Training epoch [ 35 /  60]
+2019-01-08 14:58:40,060 - algorithms.Algorithm - INFO   - ==> Set to classifier optimizer lr = 0.0060000000
+2019-01-08 14:58:40,060 - algorithms.Algorithm - INFO   - Training: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 14:58:51,808 - algorithms.Algorithm - INFO   - ==> Iteration [ 35][ 200 / 1000]: {'loss': 1.6053}
+2019-01-08 14:59:03,211 - algorithms.Algorithm - INFO   - ==> Iteration [ 35][ 400 / 1000]: {'loss': 1.6023}
+2019-01-08 14:59:14,629 - algorithms.Algorithm - INFO   - ==> Iteration [ 35][ 600 / 1000]: {'loss': 1.6005}
+2019-01-08 14:59:26,064 - algorithms.Algorithm - INFO   - ==> Iteration [ 35][ 800 / 1000]: {'loss': 1.6045}
+2019-01-08 14:59:37,493 - algorithms.Algorithm - INFO   - ==> Iteration [ 35][1000 / 1000]: {'loss': 1.6064}
+2019-01-08 14:59:37,500 - algorithms.Algorithm - INFO   - ==> Training stats: {'loss': 1.6064}
+2019-01-08 14:59:37,510 - algorithms.Algorithm - INFO   - Evaluating: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 14:59:37,510 - algorithms.Algorithm - INFO   - ==> Dataset: MiniImageNet_val [2000 batches]
+2019-01-08 15:00:58,773 - algorithms.Algorithm - INFO   - ==> Results: {'loss': 1.8787, 'AccuracyNovel_cnf': 0.3765}
+2019-01-08 15:00:58,773 - algorithms.Algorithm - INFO   - ==> Evaluation stats: {'loss': 1.8787, 'AccuracyNovel_cnf': 0.3765}
+2019-01-08 15:00:58,773 - algorithms.Algorithm - INFO   - Training epoch [ 36 /  60]
+2019-01-08 15:00:58,773 - algorithms.Algorithm - INFO   - ==> Set to classifier optimizer lr = 0.0060000000
+2019-01-08 15:00:58,773 - algorithms.Algorithm - INFO   - Training: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 15:01:10,513 - algorithms.Algorithm - INFO   - ==> Iteration [ 36][ 200 / 1000]: {'loss': 1.6021}
+2019-01-08 15:01:21,956 - algorithms.Algorithm - INFO   - ==> Iteration [ 36][ 400 / 1000]: {'loss': 1.6037}
+2019-01-08 15:01:33,391 - algorithms.Algorithm - INFO   - ==> Iteration [ 36][ 600 / 1000]: {'loss': 1.6043}
+2019-01-08 15:01:44,818 - algorithms.Algorithm - INFO   - ==> Iteration [ 36][ 800 / 1000]: {'loss': 1.6032}
+2019-01-08 15:01:56,258 - algorithms.Algorithm - INFO   - ==> Iteration [ 36][1000 / 1000]: {'loss': 1.602}
+2019-01-08 15:01:56,266 - algorithms.Algorithm - INFO   - ==> Training stats: {'loss': 1.602}
+2019-01-08 15:01:56,276 - algorithms.Algorithm - INFO   - Evaluating: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 15:01:56,277 - algorithms.Algorithm - INFO   - ==> Dataset: MiniImageNet_val [2000 batches]
+2019-01-08 15:03:13,148 - algorithms.Algorithm - INFO   - ==> Results: {'loss': 1.88, 'AccuracyNovel_cnf': 0.3759}
+2019-01-08 15:03:13,148 - algorithms.Algorithm - INFO   - ==> Evaluation stats: {'loss': 1.88, 'AccuracyNovel_cnf': 0.3759}
+2019-01-08 15:03:13,148 - algorithms.Algorithm - INFO   - Training epoch [ 37 /  60]
+2019-01-08 15:03:13,148 - algorithms.Algorithm - INFO   - ==> Set to classifier optimizer lr = 0.0060000000
+2019-01-08 15:03:13,148 - algorithms.Algorithm - INFO   - Training: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 15:03:24,927 - algorithms.Algorithm - INFO   - ==> Iteration [ 37][ 200 / 1000]: {'loss': 1.6045}
+2019-01-08 15:03:36,341 - algorithms.Algorithm - INFO   - ==> Iteration [ 37][ 400 / 1000]: {'loss': 1.6067}
+2019-01-08 15:03:47,769 - algorithms.Algorithm - INFO   - ==> Iteration [ 37][ 600 / 1000]: {'loss': 1.6024}
+2019-01-08 15:03:59,201 - algorithms.Algorithm - INFO   - ==> Iteration [ 37][ 800 / 1000]: {'loss': 1.6031}
+2019-01-08 15:04:10,645 - algorithms.Algorithm - INFO   - ==> Iteration [ 37][1000 / 1000]: {'loss': 1.6039}
+2019-01-08 15:04:10,652 - algorithms.Algorithm - INFO   - ==> Training stats: {'loss': 1.6039}
+2019-01-08 15:04:11,394 - algorithms.Algorithm - INFO   - Evaluating: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 15:04:11,394 - algorithms.Algorithm - INFO   - ==> Dataset: MiniImageNet_val [2000 batches]
+2019-01-08 15:05:31,449 - algorithms.Algorithm - INFO   - ==> Results: {'loss': 1.8817, 'AccuracyNovel_cnf': 0.3747}
+2019-01-08 15:05:31,450 - algorithms.Algorithm - INFO   - ==> Evaluation stats: {'loss': 1.8817, 'AccuracyNovel_cnf': 0.3747}
+2019-01-08 15:05:31,450 - algorithms.Algorithm - INFO   - Training epoch [ 38 /  60]
+2019-01-08 15:05:31,450 - algorithms.Algorithm - INFO   - ==> Set to classifier optimizer lr = 0.0060000000
+2019-01-08 15:05:31,450 - algorithms.Algorithm - INFO   - Training: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 15:05:43,218 - algorithms.Algorithm - INFO   - ==> Iteration [ 38][ 200 / 1000]: {'loss': 1.6058}
+2019-01-08 15:05:54,634 - algorithms.Algorithm - INFO   - ==> Iteration [ 38][ 400 / 1000]: {'loss': 1.6117}
+2019-01-08 15:06:06,216 - algorithms.Algorithm - INFO   - ==> Iteration [ 38][ 600 / 1000]: {'loss': 1.6089}
+2019-01-08 15:06:17,674 - algorithms.Algorithm - INFO   - ==> Iteration [ 38][ 800 / 1000]: {'loss': 1.6075}
+2019-01-08 15:06:29,112 - algorithms.Algorithm - INFO   - ==> Iteration [ 38][1000 / 1000]: {'loss': 1.6054}
+2019-01-08 15:06:29,120 - algorithms.Algorithm - INFO   - ==> Training stats: {'loss': 1.6054}
+2019-01-08 15:06:29,129 - algorithms.Algorithm - INFO   - Evaluating: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 15:06:29,129 - algorithms.Algorithm - INFO   - ==> Dataset: MiniImageNet_val [2000 batches]
+2019-01-08 15:07:44,708 - algorithms.Algorithm - INFO   - ==> Results: {'loss': 1.8799, 'AccuracyNovel_cnf': 0.3756}
+2019-01-08 15:07:44,708 - algorithms.Algorithm - INFO   - ==> Evaluation stats: {'loss': 1.8799, 'AccuracyNovel_cnf': 0.3756}
+2019-01-08 15:07:44,708 - algorithms.Algorithm - INFO   - Training epoch [ 39 /  60]
+2019-01-08 15:07:44,708 - algorithms.Algorithm - INFO   - ==> Set to classifier optimizer lr = 0.0060000000
+2019-01-08 15:07:44,708 - algorithms.Algorithm - INFO   - Training: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 15:07:56,427 - algorithms.Algorithm - INFO   - ==> Iteration [ 39][ 200 / 1000]: {'loss': 1.598}
+2019-01-08 15:08:07,829 - algorithms.Algorithm - INFO   - ==> Iteration [ 39][ 400 / 1000]: {'loss': 1.5951}
+2019-01-08 15:08:19,257 - algorithms.Algorithm - INFO   - ==> Iteration [ 39][ 600 / 1000]: {'loss': 1.5977}
+2019-01-08 15:08:30,685 - algorithms.Algorithm - INFO   - ==> Iteration [ 39][ 800 / 1000]: {'loss': 1.5986}
+2019-01-08 15:08:42,129 - algorithms.Algorithm - INFO   - ==> Iteration [ 39][1000 / 1000]: {'loss': 1.6}
+2019-01-08 15:08:42,137 - algorithms.Algorithm - INFO   - ==> Training stats: {'loss': 1.6}
+2019-01-08 15:08:42,146 - algorithms.Algorithm - INFO   - Evaluating: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 15:08:42,146 - algorithms.Algorithm - INFO   - ==> Dataset: MiniImageNet_val [2000 batches]
+2019-01-08 15:09:58,422 - algorithms.Algorithm - INFO   - ==> Results: {'loss': 1.8818, 'AccuracyNovel_cnf': 0.375}
+2019-01-08 15:09:58,423 - algorithms.Algorithm - INFO   - ==> Evaluation stats: {'loss': 1.8818, 'AccuracyNovel_cnf': 0.375}
+2019-01-08 15:09:58,423 - algorithms.Algorithm - INFO   - Training epoch [ 40 /  60]
+2019-01-08 15:09:58,423 - algorithms.Algorithm - INFO   - ==> Set to classifier optimizer lr = 0.0060000000
+2019-01-08 15:09:58,423 - algorithms.Algorithm - INFO   - Training: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 15:10:10,162 - algorithms.Algorithm - INFO   - ==> Iteration [ 40][ 200 / 1000]: {'loss': 1.6043}
+2019-01-08 15:10:21,519 - algorithms.Algorithm - INFO   - ==> Iteration [ 40][ 400 / 1000]: {'loss': 1.6023}
+2019-01-08 15:10:32,917 - algorithms.Algorithm - INFO   - ==> Iteration [ 40][ 600 / 1000]: {'loss': 1.6007}
+2019-01-08 15:10:44,326 - algorithms.Algorithm - INFO   - ==> Iteration [ 40][ 800 / 1000]: {'loss': 1.6}
+2019-01-08 15:10:55,745 - algorithms.Algorithm - INFO   - ==> Iteration [ 40][1000 / 1000]: {'loss': 1.6}
+2019-01-08 15:10:55,752 - algorithms.Algorithm - INFO   - ==> Training stats: {'loss': 1.6}
+2019-01-08 15:10:55,762 - algorithms.Algorithm - INFO   - Evaluating: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 15:10:55,762 - algorithms.Algorithm - INFO   - ==> Dataset: MiniImageNet_val [2000 batches]
+2019-01-08 15:12:11,269 - algorithms.Algorithm - INFO   - ==> Results: {'loss': 1.8802, 'AccuracyNovel_cnf': 0.3765}
+2019-01-08 15:12:11,270 - algorithms.Algorithm - INFO   - ==> Evaluation stats: {'loss': 1.8802, 'AccuracyNovel_cnf': 0.3765}
+2019-01-08 15:12:11,270 - algorithms.Algorithm - INFO   - Training epoch [ 41 /  60]
+2019-01-08 15:12:11,270 - algorithms.Algorithm - INFO   - ==> Set to classifier optimizer lr = 0.0012000000
+2019-01-08 15:12:11,271 - algorithms.Algorithm - INFO   - Training: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 15:12:23,045 - algorithms.Algorithm - INFO   - ==> Iteration [ 41][ 200 / 1000]: {'loss': 1.6052}
+2019-01-08 15:12:34,529 - algorithms.Algorithm - INFO   - ==> Iteration [ 41][ 400 / 1000]: {'loss': 1.603}
+2019-01-08 15:12:46,081 - algorithms.Algorithm - INFO   - ==> Iteration [ 41][ 600 / 1000]: {'loss': 1.6029}
+2019-01-08 15:12:58,101 - algorithms.Algorithm - INFO   - ==> Iteration [ 41][ 800 / 1000]: {'loss': 1.6032}
+2019-01-08 15:13:10,154 - algorithms.Algorithm - INFO   - ==> Iteration [ 41][1000 / 1000]: {'loss': 1.6028}
+2019-01-08 15:13:10,160 - algorithms.Algorithm - INFO   - ==> Training stats: {'loss': 1.6028}
+2019-01-08 15:13:10,169 - algorithms.Algorithm - INFO   - Evaluating: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 15:13:10,170 - algorithms.Algorithm - INFO   - ==> Dataset: MiniImageNet_val [2000 batches]
+2019-01-08 15:14:27,308 - algorithms.Algorithm - INFO   - ==> Results: {'loss': 1.8771, 'AccuracyNovel_cnf': 0.3762}
+2019-01-08 15:14:27,308 - algorithms.Algorithm - INFO   - ==> Evaluation stats: {'loss': 1.8771, 'AccuracyNovel_cnf': 0.3762}
+2019-01-08 15:14:27,308 - algorithms.Algorithm - INFO   - Training epoch [ 42 /  60]
+2019-01-08 15:14:27,308 - algorithms.Algorithm - INFO   - ==> Set to classifier optimizer lr = 0.0012000000
+2019-01-08 15:14:27,309 - algorithms.Algorithm - INFO   - Training: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 15:14:39,559 - algorithms.Algorithm - INFO   - ==> Iteration [ 42][ 200 / 1000]: {'loss': 1.5992}
+2019-01-08 15:14:51,580 - algorithms.Algorithm - INFO   - ==> Iteration [ 42][ 400 / 1000]: {'loss': 1.6015}
+2019-01-08 15:15:03,632 - algorithms.Algorithm - INFO   - ==> Iteration [ 42][ 600 / 1000]: {'loss': 1.6002}
+2019-01-08 15:15:15,668 - algorithms.Algorithm - INFO   - ==> Iteration [ 42][ 800 / 1000]: {'loss': 1.5979}
+2019-01-08 15:15:27,747 - algorithms.Algorithm - INFO   - ==> Iteration [ 42][1000 / 1000]: {'loss': 1.5961}
+2019-01-08 15:15:27,757 - algorithms.Algorithm - INFO   - ==> Training stats: {'loss': 1.5961}
+2019-01-08 15:15:28,005 - algorithms.Algorithm - INFO   - Evaluating: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 15:15:28,005 - algorithms.Algorithm - INFO   - ==> Dataset: MiniImageNet_val [2000 batches]
+2019-01-08 15:16:50,833 - algorithms.Algorithm - INFO   - ==> Results: {'loss': 1.8778, 'AccuracyNovel_cnf': 0.3755}
+2019-01-08 15:16:50,834 - algorithms.Algorithm - INFO   - ==> Evaluation stats: {'loss': 1.8778, 'AccuracyNovel_cnf': 0.3755}
+2019-01-08 15:16:50,834 - algorithms.Algorithm - INFO   - Training epoch [ 43 /  60]
+2019-01-08 15:16:50,834 - algorithms.Algorithm - INFO   - ==> Set to classifier optimizer lr = 0.0012000000
+2019-01-08 15:16:50,834 - algorithms.Algorithm - INFO   - Training: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 15:17:03,206 - algorithms.Algorithm - INFO   - ==> Iteration [ 43][ 200 / 1000]: {'loss': 1.5927}
+2019-01-08 15:17:15,246 - algorithms.Algorithm - INFO   - ==> Iteration [ 43][ 400 / 1000]: {'loss': 1.598}
+2019-01-08 15:17:27,332 - algorithms.Algorithm - INFO   - ==> Iteration [ 43][ 600 / 1000]: {'loss': 1.6001}
+2019-01-08 15:17:39,413 - algorithms.Algorithm - INFO   - ==> Iteration [ 43][ 800 / 1000]: {'loss': 1.5976}
+2019-01-08 15:17:51,344 - algorithms.Algorithm - INFO   - ==> Iteration [ 43][1000 / 1000]: {'loss': 1.5977}
+2019-01-08 15:17:51,353 - algorithms.Algorithm - INFO   - ==> Training stats: {'loss': 1.5977}
+2019-01-08 15:17:51,362 - algorithms.Algorithm - INFO   - Evaluating: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 15:17:51,362 - algorithms.Algorithm - INFO   - ==> Dataset: MiniImageNet_val [2000 batches]
+2019-01-08 15:19:10,472 - algorithms.Algorithm - INFO   - ==> Results: {'loss': 1.8769, 'AccuracyNovel_cnf': 0.3759}
+2019-01-08 15:19:10,472 - algorithms.Algorithm - INFO   - ==> Evaluation stats: {'loss': 1.8769, 'AccuracyNovel_cnf': 0.3759}
+2019-01-08 15:19:10,472 - algorithms.Algorithm - INFO   - Training epoch [ 44 /  60]
+2019-01-08 15:19:10,472 - algorithms.Algorithm - INFO   - ==> Set to classifier optimizer lr = 0.0012000000
+2019-01-08 15:19:10,472 - algorithms.Algorithm - INFO   - Training: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 15:19:22,800 - algorithms.Algorithm - INFO   - ==> Iteration [ 44][ 200 / 1000]: {'loss': 1.6044}
+2019-01-08 15:19:34,875 - algorithms.Algorithm - INFO   - ==> Iteration [ 44][ 400 / 1000]: {'loss': 1.6009}
+2019-01-08 15:19:46,886 - algorithms.Algorithm - INFO   - ==> Iteration [ 44][ 600 / 1000]: {'loss': 1.6007}
+2019-01-08 15:19:58,986 - algorithms.Algorithm - INFO   - ==> Iteration [ 44][ 800 / 1000]: {'loss': 1.5996}
+2019-01-08 15:20:10,980 - algorithms.Algorithm - INFO   - ==> Iteration [ 44][1000 / 1000]: {'loss': 1.5979}
+2019-01-08 15:20:10,986 - algorithms.Algorithm - INFO   - ==> Training stats: {'loss': 1.5979}
+2019-01-08 15:20:11,358 - algorithms.Algorithm - INFO   - Evaluating: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 15:20:11,358 - algorithms.Algorithm - INFO   - ==> Dataset: MiniImageNet_val [2000 batches]
+2019-01-08 15:21:30,205 - algorithms.Algorithm - INFO   - ==> Results: {'loss': 1.8772, 'AccuracyNovel_cnf': 0.3761}
+2019-01-08 15:21:30,205 - algorithms.Algorithm - INFO   - ==> Evaluation stats: {'loss': 1.8772, 'AccuracyNovel_cnf': 0.3761}
+2019-01-08 15:21:30,205 - algorithms.Algorithm - INFO   - Training epoch [ 45 /  60]
+2019-01-08 15:21:30,206 - algorithms.Algorithm - INFO   - ==> Set to classifier optimizer lr = 0.0012000000
+2019-01-08 15:21:30,206 - algorithms.Algorithm - INFO   - Training: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 15:21:42,207 - algorithms.Algorithm - INFO   - ==> Iteration [ 45][ 200 / 1000]: {'loss': 1.5984}
+2019-01-08 15:21:53,692 - algorithms.Algorithm - INFO   - ==> Iteration [ 45][ 400 / 1000]: {'loss': 1.592}
+2019-01-08 15:22:05,298 - algorithms.Algorithm - INFO   - ==> Iteration [ 45][ 600 / 1000]: {'loss': 1.5943}
+2019-01-08 15:22:16,812 - algorithms.Algorithm - INFO   - ==> Iteration [ 45][ 800 / 1000]: {'loss': 1.5964}
+2019-01-08 15:22:28,343 - algorithms.Algorithm - INFO   - ==> Iteration [ 45][1000 / 1000]: {'loss': 1.5958}
+2019-01-08 15:22:28,351 - algorithms.Algorithm - INFO   - ==> Training stats: {'loss': 1.5958}
+2019-01-08 15:22:28,360 - algorithms.Algorithm - INFO   - Evaluating: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 15:22:28,360 - algorithms.Algorithm - INFO   - ==> Dataset: MiniImageNet_val [2000 batches]
+2019-01-08 15:23:49,211 - algorithms.Algorithm - INFO   - ==> Results: {'loss': 1.8768, 'AccuracyNovel_cnf': 0.3762}
+2019-01-08 15:23:49,211 - algorithms.Algorithm - INFO   - ==> Evaluation stats: {'loss': 1.8768, 'AccuracyNovel_cnf': 0.3762}
+2019-01-08 15:23:49,211 - algorithms.Algorithm - INFO   - Training epoch [ 46 /  60]
+2019-01-08 15:23:49,211 - algorithms.Algorithm - INFO   - ==> Set to classifier optimizer lr = 0.0012000000
+2019-01-08 15:23:49,212 - algorithms.Algorithm - INFO   - Training: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 15:24:00,909 - algorithms.Algorithm - INFO   - ==> Iteration [ 46][ 200 / 1000]: {'loss': 1.6025}
+2019-01-08 15:24:12,407 - algorithms.Algorithm - INFO   - ==> Iteration [ 46][ 400 / 1000]: {'loss': 1.6}
+2019-01-08 15:24:23,906 - algorithms.Algorithm - INFO   - ==> Iteration [ 46][ 600 / 1000]: {'loss': 1.5973}
+2019-01-08 15:24:35,386 - algorithms.Algorithm - INFO   - ==> Iteration [ 46][ 800 / 1000]: {'loss': 1.6}
+2019-01-08 15:24:46,988 - algorithms.Algorithm - INFO   - ==> Iteration [ 46][1000 / 1000]: {'loss': 1.5992}
+2019-01-08 15:24:46,995 - algorithms.Algorithm - INFO   - ==> Training stats: {'loss': 1.5992}
+2019-01-08 15:24:47,006 - algorithms.Algorithm - INFO   - Evaluating: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 15:24:47,006 - algorithms.Algorithm - INFO   - ==> Dataset: MiniImageNet_val [2000 batches]
+2019-01-08 15:26:04,354 - algorithms.Algorithm - INFO   - ==> Results: {'loss': 1.8774, 'AccuracyNovel_cnf': 0.376}
+2019-01-08 15:26:04,354 - algorithms.Algorithm - INFO   - ==> Evaluation stats: {'loss': 1.8774, 'AccuracyNovel_cnf': 0.376}
+2019-01-08 15:26:04,354 - algorithms.Algorithm - INFO   - Training epoch [ 47 /  60]
+2019-01-08 15:26:04,354 - algorithms.Algorithm - INFO   - ==> Set to classifier optimizer lr = 0.0012000000
+2019-01-08 15:26:04,355 - algorithms.Algorithm - INFO   - Training: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 15:26:16,180 - algorithms.Algorithm - INFO   - ==> Iteration [ 47][ 200 / 1000]: {'loss': 1.5911}
+2019-01-08 15:26:27,643 - algorithms.Algorithm - INFO   - ==> Iteration [ 47][ 400 / 1000]: {'loss': 1.5907}
+2019-01-08 15:26:39,116 - algorithms.Algorithm - INFO   - ==> Iteration [ 47][ 600 / 1000]: {'loss': 1.5889}
+2019-01-08 15:26:50,606 - algorithms.Algorithm - INFO   - ==> Iteration [ 47][ 800 / 1000]: {'loss': 1.5923}
+2019-01-08 15:27:02,097 - algorithms.Algorithm - INFO   - ==> Iteration [ 47][1000 / 1000]: {'loss': 1.5942}
+2019-01-08 15:27:02,104 - algorithms.Algorithm - INFO   - ==> Training stats: {'loss': 1.5942}
+2019-01-08 15:27:02,114 - algorithms.Algorithm - INFO   - Evaluating: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 15:27:02,114 - algorithms.Algorithm - INFO   - ==> Dataset: MiniImageNet_val [2000 batches]
+2019-01-08 15:28:20,173 - algorithms.Algorithm - INFO   - ==> Results: {'loss': 1.8764, 'AccuracyNovel_cnf': 0.3762}
+2019-01-08 15:28:20,173 - algorithms.Algorithm - INFO   - ==> Evaluation stats: {'loss': 1.8764, 'AccuracyNovel_cnf': 0.3762}
+2019-01-08 15:28:20,173 - algorithms.Algorithm - INFO   - Training epoch [ 48 /  60]
+2019-01-08 15:28:20,173 - algorithms.Algorithm - INFO   - ==> Set to classifier optimizer lr = 0.0012000000
+2019-01-08 15:28:20,174 - algorithms.Algorithm - INFO   - Training: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 15:28:31,914 - algorithms.Algorithm - INFO   - ==> Iteration [ 48][ 200 / 1000]: {'loss': 1.6023}
+2019-01-08 15:28:43,356 - algorithms.Algorithm - INFO   - ==> Iteration [ 48][ 400 / 1000]: {'loss': 1.588}
+2019-01-08 15:28:54,802 - algorithms.Algorithm - INFO   - ==> Iteration [ 48][ 600 / 1000]: {'loss': 1.5925}
+2019-01-08 15:29:06,258 - algorithms.Algorithm - INFO   - ==> Iteration [ 48][ 800 / 1000]: {'loss': 1.5915}
+2019-01-08 15:29:17,769 - algorithms.Algorithm - INFO   - ==> Iteration [ 48][1000 / 1000]: {'loss': 1.5936}
+2019-01-08 15:29:17,777 - algorithms.Algorithm - INFO   - ==> Training stats: {'loss': 1.5936}
+2019-01-08 15:29:17,786 - algorithms.Algorithm - INFO   - Evaluating: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 15:29:17,787 - algorithms.Algorithm - INFO   - ==> Dataset: MiniImageNet_val [2000 batches]
+2019-01-08 15:30:35,157 - algorithms.Algorithm - INFO   - ==> Results: {'loss': 1.8768, 'AccuracyNovel_cnf': 0.3761}
+2019-01-08 15:30:35,157 - algorithms.Algorithm - INFO   - ==> Evaluation stats: {'loss': 1.8768, 'AccuracyNovel_cnf': 0.3761}
+2019-01-08 15:30:35,157 - algorithms.Algorithm - INFO   - Training epoch [ 49 /  60]
+2019-01-08 15:30:35,157 - algorithms.Algorithm - INFO   - ==> Set to classifier optimizer lr = 0.0012000000
+2019-01-08 15:30:35,157 - algorithms.Algorithm - INFO   - Training: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 15:30:47,051 - algorithms.Algorithm - INFO   - ==> Iteration [ 49][ 200 / 1000]: {'loss': 1.5903}
+2019-01-08 15:30:58,508 - algorithms.Algorithm - INFO   - ==> Iteration [ 49][ 400 / 1000]: {'loss': 1.597}
+2019-01-08 15:31:09,924 - algorithms.Algorithm - INFO   - ==> Iteration [ 49][ 600 / 1000]: {'loss': 1.5951}
+2019-01-08 15:31:21,340 - algorithms.Algorithm - INFO   - ==> Iteration [ 49][ 800 / 1000]: {'loss': 1.5939}
+2019-01-08 15:31:32,777 - algorithms.Algorithm - INFO   - ==> Iteration [ 49][1000 / 1000]: {'loss': 1.5946}
+2019-01-08 15:31:32,783 - algorithms.Algorithm - INFO   - ==> Training stats: {'loss': 1.5946}
+2019-01-08 15:31:33,408 - algorithms.Algorithm - INFO   - Evaluating: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 15:31:33,408 - algorithms.Algorithm - INFO   - ==> Dataset: MiniImageNet_val [2000 batches]
+2019-01-08 15:32:50,970 - algorithms.Algorithm - INFO   - ==> Results: {'loss': 1.877, 'AccuracyNovel_cnf': 0.3763}
+2019-01-08 15:32:50,970 - algorithms.Algorithm - INFO   - ==> Evaluation stats: {'loss': 1.877, 'AccuracyNovel_cnf': 0.3763}
+2019-01-08 15:32:50,970 - algorithms.Algorithm - INFO   - Training epoch [ 50 /  60]
+2019-01-08 15:32:50,970 - algorithms.Algorithm - INFO   - ==> Set to classifier optimizer lr = 0.0012000000
+2019-01-08 15:32:50,970 - algorithms.Algorithm - INFO   - Training: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 15:33:02,696 - algorithms.Algorithm - INFO   - ==> Iteration [ 50][ 200 / 1000]: {'loss': 1.5924}
+2019-01-08 15:33:14,216 - algorithms.Algorithm - INFO   - ==> Iteration [ 50][ 400 / 1000]: {'loss': 1.5935}
+2019-01-08 15:33:25,727 - algorithms.Algorithm - INFO   - ==> Iteration [ 50][ 600 / 1000]: {'loss': 1.5946}
+2019-01-08 15:33:37,209 - algorithms.Algorithm - INFO   - ==> Iteration [ 50][ 800 / 1000]: {'loss': 1.5982}
+2019-01-08 15:33:48,698 - algorithms.Algorithm - INFO   - ==> Iteration [ 50][1000 / 1000]: {'loss': 1.5979}
+2019-01-08 15:33:48,706 - algorithms.Algorithm - INFO   - ==> Training stats: {'loss': 1.5979}
+2019-01-08 15:33:48,715 - algorithms.Algorithm - INFO   - Evaluating: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 15:33:48,715 - algorithms.Algorithm - INFO   - ==> Dataset: MiniImageNet_val [2000 batches]
+2019-01-08 15:35:05,128 - algorithms.Algorithm - INFO   - ==> Results: {'loss': 1.8771, 'AccuracyNovel_cnf': 0.3768}
+2019-01-08 15:35:05,128 - algorithms.Algorithm - INFO   - ==> Evaluation stats: {'loss': 1.8771, 'AccuracyNovel_cnf': 0.3768}
+2019-01-08 15:35:05,129 - algorithms.Algorithm - INFO   - Training epoch [ 51 /  60]
+2019-01-08 15:35:05,129 - algorithms.Algorithm - INFO   - ==> Set to classifier optimizer lr = 0.0002400000
+2019-01-08 15:35:05,129 - algorithms.Algorithm - INFO   - Training: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 15:35:16,878 - algorithms.Algorithm - INFO   - ==> Iteration [ 51][ 200 / 1000]: {'loss': 1.5967}
+2019-01-08 15:35:28,325 - algorithms.Algorithm - INFO   - ==> Iteration [ 51][ 400 / 1000]: {'loss': 1.5966}
+2019-01-08 15:35:39,782 - algorithms.Algorithm - INFO   - ==> Iteration [ 51][ 600 / 1000]: {'loss': 1.5995}
+2019-01-08 15:35:51,238 - algorithms.Algorithm - INFO   - ==> Iteration [ 51][ 800 / 1000]: {'loss': 1.5972}
+2019-01-08 15:36:02,706 - algorithms.Algorithm - INFO   - ==> Iteration [ 51][1000 / 1000]: {'loss': 1.5954}
+2019-01-08 15:36:02,713 - algorithms.Algorithm - INFO   - ==> Training stats: {'loss': 1.5954}
+2019-01-08 15:36:02,993 - algorithms.Algorithm - INFO   - Evaluating: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 15:36:02,993 - algorithms.Algorithm - INFO   - ==> Dataset: MiniImageNet_val [2000 batches]
+2019-01-08 15:37:24,191 - algorithms.Algorithm - INFO   - ==> Results: {'loss': 1.8763, 'AccuracyNovel_cnf': 0.3765}
+2019-01-08 15:37:24,192 - algorithms.Algorithm - INFO   - ==> Evaluation stats: {'loss': 1.8763, 'AccuracyNovel_cnf': 0.3765}
+2019-01-08 15:37:24,192 - algorithms.Algorithm - INFO   - Training epoch [ 52 /  60]
+2019-01-08 15:37:24,192 - algorithms.Algorithm - INFO   - ==> Set to classifier optimizer lr = 0.0002400000
+2019-01-08 15:37:24,192 - algorithms.Algorithm - INFO   - Training: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 15:37:36,000 - algorithms.Algorithm - INFO   - ==> Iteration [ 52][ 200 / 1000]: {'loss': 1.5898}
+2019-01-08 15:37:47,505 - algorithms.Algorithm - INFO   - ==> Iteration [ 52][ 400 / 1000]: {'loss': 1.5971}
+2019-01-08 15:37:58,997 - algorithms.Algorithm - INFO   - ==> Iteration [ 52][ 600 / 1000]: {'loss': 1.5968}
+2019-01-08 15:38:10,515 - algorithms.Algorithm - INFO   - ==> Iteration [ 52][ 800 / 1000]: {'loss': 1.5939}
+2019-01-08 15:38:22,074 - algorithms.Algorithm - INFO   - ==> Iteration [ 52][1000 / 1000]: {'loss': 1.5939}
+2019-01-08 15:38:22,082 - algorithms.Algorithm - INFO   - ==> Training stats: {'loss': 1.5939}
+2019-01-08 15:38:22,091 - algorithms.Algorithm - INFO   - Evaluating: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 15:38:22,091 - algorithms.Algorithm - INFO   - ==> Dataset: MiniImageNet_val [2000 batches]
+2019-01-08 15:39:38,673 - algorithms.Algorithm - INFO   - ==> Results: {'loss': 1.8764, 'AccuracyNovel_cnf': 0.3767}
+2019-01-08 15:39:38,674 - algorithms.Algorithm - INFO   - ==> Evaluation stats: {'loss': 1.8764, 'AccuracyNovel_cnf': 0.3767}
+2019-01-08 15:39:38,674 - algorithms.Algorithm - INFO   - Training epoch [ 53 /  60]
+2019-01-08 15:39:38,674 - algorithms.Algorithm - INFO   - ==> Set to classifier optimizer lr = 0.0002400000
+2019-01-08 15:39:38,674 - algorithms.Algorithm - INFO   - Training: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 15:39:50,398 - algorithms.Algorithm - INFO   - ==> Iteration [ 53][ 200 / 1000]: {'loss': 1.599}
+2019-01-08 15:40:01,824 - algorithms.Algorithm - INFO   - ==> Iteration [ 53][ 400 / 1000]: {'loss': 1.5989}
+2019-01-08 15:40:13,257 - algorithms.Algorithm - INFO   - ==> Iteration [ 53][ 600 / 1000]: {'loss': 1.5969}
+2019-01-08 15:40:24,696 - algorithms.Algorithm - INFO   - ==> Iteration [ 53][ 800 / 1000]: {'loss': 1.5967}
+2019-01-08 15:40:36,146 - algorithms.Algorithm - INFO   - ==> Iteration [ 53][1000 / 1000]: {'loss': 1.5966}
+2019-01-08 15:40:36,153 - algorithms.Algorithm - INFO   - ==> Training stats: {'loss': 1.5966}
+2019-01-08 15:40:36,165 - algorithms.Algorithm - INFO   - Evaluating: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 15:40:36,165 - algorithms.Algorithm - INFO   - ==> Dataset: MiniImageNet_val [2000 batches]
+2019-01-08 15:41:52,011 - algorithms.Algorithm - INFO   - ==> Results: {'loss': 1.8761, 'AccuracyNovel_cnf': 0.3766}
+2019-01-08 15:41:52,012 - algorithms.Algorithm - INFO   - ==> Evaluation stats: {'loss': 1.8761, 'AccuracyNovel_cnf': 0.3766}
+2019-01-08 15:41:52,012 - algorithms.Algorithm - INFO   - Training epoch [ 54 /  60]
+2019-01-08 15:41:52,013 - algorithms.Algorithm - INFO   - ==> Set to classifier optimizer lr = 0.0002400000
+2019-01-08 15:41:52,013 - algorithms.Algorithm - INFO   - Training: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 15:42:03,859 - algorithms.Algorithm - INFO   - ==> Iteration [ 54][ 200 / 1000]: {'loss': 1.6009}
+2019-01-08 15:42:15,287 - algorithms.Algorithm - INFO   - ==> Iteration [ 54][ 400 / 1000]: {'loss': 1.6032}
+2019-01-08 15:42:26,714 - algorithms.Algorithm - INFO   - ==> Iteration [ 54][ 600 / 1000]: {'loss': 1.6001}
+2019-01-08 15:42:38,139 - algorithms.Algorithm - INFO   - ==> Iteration [ 54][ 800 / 1000]: {'loss': 1.599}
+2019-01-08 15:42:49,583 - algorithms.Algorithm - INFO   - ==> Iteration [ 54][1000 / 1000]: {'loss': 1.5984}
+2019-01-08 15:42:49,598 - algorithms.Algorithm - INFO   - ==> Training stats: {'loss': 1.5984}
+2019-01-08 15:42:49,608 - algorithms.Algorithm - INFO   - Evaluating: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 15:42:49,608 - algorithms.Algorithm - INFO   - ==> Dataset: MiniImageNet_val [2000 batches]
+2019-01-08 15:44:07,618 - algorithms.Algorithm - INFO   - ==> Results: {'loss': 1.8756, 'AccuracyNovel_cnf': 0.3766}
+2019-01-08 15:44:07,619 - algorithms.Algorithm - INFO   - ==> Evaluation stats: {'loss': 1.8756, 'AccuracyNovel_cnf': 0.3766}
+2019-01-08 15:44:07,619 - algorithms.Algorithm - INFO   - Training epoch [ 55 /  60]
+2019-01-08 15:44:07,619 - algorithms.Algorithm - INFO   - ==> Set to classifier optimizer lr = 0.0002400000
+2019-01-08 15:44:07,619 - algorithms.Algorithm - INFO   - Training: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 15:44:19,397 - algorithms.Algorithm - INFO   - ==> Iteration [ 55][ 200 / 1000]: {'loss': 1.5944}
+2019-01-08 15:44:30,925 - algorithms.Algorithm - INFO   - ==> Iteration [ 55][ 400 / 1000]: {'loss': 1.5931}
+2019-01-08 15:44:42,428 - algorithms.Algorithm - INFO   - ==> Iteration [ 55][ 600 / 1000]: {'loss': 1.5909}
+2019-01-08 15:44:53,950 - algorithms.Algorithm - INFO   - ==> Iteration [ 55][ 800 / 1000]: {'loss': 1.5926}
+2019-01-08 15:45:05,434 - algorithms.Algorithm - INFO   - ==> Iteration [ 55][1000 / 1000]: {'loss': 1.5929}
+2019-01-08 15:45:05,442 - algorithms.Algorithm - INFO   - ==> Training stats: {'loss': 1.5929}
+2019-01-08 15:45:05,451 - algorithms.Algorithm - INFO   - Evaluating: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 15:45:05,451 - algorithms.Algorithm - INFO   - ==> Dataset: MiniImageNet_val [2000 batches]
+2019-01-08 15:46:21,347 - algorithms.Algorithm - INFO   - ==> Results: {'loss': 1.8757, 'AccuracyNovel_cnf': 0.3766}
+2019-01-08 15:46:21,347 - algorithms.Algorithm - INFO   - ==> Evaluation stats: {'loss': 1.8757, 'AccuracyNovel_cnf': 0.3766}
+2019-01-08 15:46:21,347 - algorithms.Algorithm - INFO   - Training epoch [ 56 /  60]
+2019-01-08 15:46:21,347 - algorithms.Algorithm - INFO   - ==> Set to classifier optimizer lr = 0.0002400000
+2019-01-08 15:46:21,347 - algorithms.Algorithm - INFO   - Training: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 15:46:33,109 - algorithms.Algorithm - INFO   - ==> Iteration [ 56][ 200 / 1000]: {'loss': 1.5956}
+2019-01-08 15:46:44,529 - algorithms.Algorithm - INFO   - ==> Iteration [ 56][ 400 / 1000]: {'loss': 1.5957}
+2019-01-08 15:46:55,968 - algorithms.Algorithm - INFO   - ==> Iteration [ 56][ 600 / 1000]: {'loss': 1.596}
+2019-01-08 15:47:07,566 - algorithms.Algorithm - INFO   - ==> Iteration [ 56][ 800 / 1000]: {'loss': 1.5974}
+2019-01-08 15:47:19,035 - algorithms.Algorithm - INFO   - ==> Iteration [ 56][1000 / 1000]: {'loss': 1.5968}
+2019-01-08 15:47:19,043 - algorithms.Algorithm - INFO   - ==> Training stats: {'loss': 1.5968}
+2019-01-08 15:47:19,053 - algorithms.Algorithm - INFO   - Evaluating: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 15:47:19,053 - algorithms.Algorithm - INFO   - ==> Dataset: MiniImageNet_val [2000 batches]
+2019-01-08 15:48:34,593 - algorithms.Algorithm - INFO   - ==> Results: {'loss': 1.8744, 'AccuracyNovel_cnf': 0.3769}
+2019-01-08 15:48:34,594 - algorithms.Algorithm - INFO   - ==> Evaluation stats: {'loss': 1.8744, 'AccuracyNovel_cnf': 0.3769}
+2019-01-08 15:48:34,594 - algorithms.Algorithm - INFO   - Training epoch [ 57 /  60]
+2019-01-08 15:48:34,594 - algorithms.Algorithm - INFO   - ==> Set to classifier optimizer lr = 0.0002400000
+2019-01-08 15:48:34,594 - algorithms.Algorithm - INFO   - Training: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 15:48:46,619 - algorithms.Algorithm - INFO   - ==> Iteration [ 57][ 200 / 1000]: {'loss': 1.5883}
+2019-01-08 15:48:58,141 - algorithms.Algorithm - INFO   - ==> Iteration [ 57][ 400 / 1000]: {'loss': 1.5898}
+2019-01-08 15:49:09,650 - algorithms.Algorithm - INFO   - ==> Iteration [ 57][ 600 / 1000]: {'loss': 1.5895}
+2019-01-08 15:49:21,182 - algorithms.Algorithm - INFO   - ==> Iteration [ 57][ 800 / 1000]: {'loss': 1.5903}
+2019-01-08 15:49:32,674 - algorithms.Algorithm - INFO   - ==> Iteration [ 57][1000 / 1000]: {'loss': 1.5894}
+2019-01-08 15:49:32,681 - algorithms.Algorithm - INFO   - ==> Training stats: {'loss': 1.5894}
+2019-01-08 15:49:32,690 - algorithms.Algorithm - INFO   - Evaluating: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 15:49:32,691 - algorithms.Algorithm - INFO   - ==> Dataset: MiniImageNet_val [2000 batches]
+2019-01-08 15:50:48,312 - algorithms.Algorithm - INFO   - ==> Results: {'loss': 1.8748, 'AccuracyNovel_cnf': 0.3766}
+2019-01-08 15:50:48,313 - algorithms.Algorithm - INFO   - ==> Evaluation stats: {'loss': 1.8748, 'AccuracyNovel_cnf': 0.3766}
+2019-01-08 15:50:48,313 - algorithms.Algorithm - INFO   - Training epoch [ 58 /  60]
+2019-01-08 15:50:48,313 - algorithms.Algorithm - INFO   - ==> Set to classifier optimizer lr = 0.0002400000
+2019-01-08 15:50:48,313 - algorithms.Algorithm - INFO   - Training: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 15:51:00,146 - algorithms.Algorithm - INFO   - ==> Iteration [ 58][ 200 / 1000]: {'loss': 1.6107}
+2019-01-08 15:51:11,583 - algorithms.Algorithm - INFO   - ==> Iteration [ 58][ 400 / 1000]: {'loss': 1.6}
+2019-01-08 15:51:23,039 - algorithms.Algorithm - INFO   - ==> Iteration [ 58][ 600 / 1000]: {'loss': 1.6024}
+2019-01-08 15:51:34,507 - algorithms.Algorithm - INFO   - ==> Iteration [ 58][ 800 / 1000]: {'loss': 1.6024}
+2019-01-08 15:51:46,005 - algorithms.Algorithm - INFO   - ==> Iteration [ 58][1000 / 1000]: {'loss': 1.6028}
+2019-01-08 15:51:46,012 - algorithms.Algorithm - INFO   - ==> Training stats: {'loss': 1.6028}
+2019-01-08 15:51:46,027 - algorithms.Algorithm - INFO   - Evaluating: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 15:51:46,028 - algorithms.Algorithm - INFO   - ==> Dataset: MiniImageNet_val [2000 batches]
+2019-01-08 15:53:06,898 - algorithms.Algorithm - INFO   - ==> Results: {'loss': 1.8749, 'AccuracyNovel_cnf': 0.3768}
+2019-01-08 15:53:06,899 - algorithms.Algorithm - INFO   - ==> Evaluation stats: {'loss': 1.8749, 'AccuracyNovel_cnf': 0.3768}
+2019-01-08 15:53:06,899 - algorithms.Algorithm - INFO   - Training epoch [ 59 /  60]
+2019-01-08 15:53:06,899 - algorithms.Algorithm - INFO   - ==> Set to classifier optimizer lr = 0.0002400000
+2019-01-08 15:53:06,899 - algorithms.Algorithm - INFO   - Training: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 15:53:20,663 - algorithms.Algorithm - INFO   - ==> Iteration [ 59][ 200 / 1000]: {'loss': 1.5929}
+2019-01-08 15:53:32,135 - algorithms.Algorithm - INFO   - ==> Iteration [ 59][ 400 / 1000]: {'loss': 1.592}
+2019-01-08 15:53:43,607 - algorithms.Algorithm - INFO   - ==> Iteration [ 59][ 600 / 1000]: {'loss': 1.5902}
+2019-01-08 15:53:55,042 - algorithms.Algorithm - INFO   - ==> Iteration [ 59][ 800 / 1000]: {'loss': 1.5869}
+2019-01-08 15:54:06,462 - algorithms.Algorithm - INFO   - ==> Iteration [ 59][1000 / 1000]: {'loss': 1.59}
+2019-01-08 15:54:06,470 - algorithms.Algorithm - INFO   - ==> Training stats: {'loss': 1.59}
+2019-01-08 15:54:06,545 - algorithms.Algorithm - INFO   - Evaluating: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 15:54:06,545 - algorithms.Algorithm - INFO   - ==> Dataset: MiniImageNet_val [2000 batches]
+2019-01-08 15:55:23,998 - algorithms.Algorithm - INFO   - ==> Results: {'loss': 1.8751, 'AccuracyNovel_cnf': 0.3767}
+2019-01-08 15:55:23,998 - algorithms.Algorithm - INFO   - ==> Evaluation stats: {'loss': 1.8751, 'AccuracyNovel_cnf': 0.3767}
+2019-01-08 15:55:23,999 - algorithms.Algorithm - INFO   - Training epoch [ 60 /  60]
+2019-01-08 15:55:23,999 - algorithms.Algorithm - INFO   - ==> Set to classifier optimizer lr = 0.0002400000
+2019-01-08 15:55:23,999 - algorithms.Algorithm - INFO   - Training: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 15:55:35,778 - algorithms.Algorithm - INFO   - ==> Iteration [ 60][ 200 / 1000]: {'loss': 1.5995}
+2019-01-08 15:55:47,237 - algorithms.Algorithm - INFO   - ==> Iteration [ 60][ 400 / 1000]: {'loss': 1.5981}
+2019-01-08 15:55:58,676 - algorithms.Algorithm - INFO   - ==> Iteration [ 60][ 600 / 1000]: {'loss': 1.5992}
+2019-01-08 15:56:10,129 - algorithms.Algorithm - INFO   - ==> Iteration [ 60][ 800 / 1000]: {'loss': 1.5987}
+2019-01-08 15:56:21,589 - algorithms.Algorithm - INFO   - ==> Iteration [ 60][1000 / 1000]: {'loss': 1.5977}
+2019-01-08 15:56:21,596 - algorithms.Algorithm - INFO   - ==> Training stats: {'loss': 1.5977}
+2019-01-08 15:56:21,851 - algorithms.Algorithm - INFO   - Evaluating: miniImageNet_Conv128CosineClassifierGenWeightAvgN5
+2019-01-08 15:56:21,851 - algorithms.Algorithm - INFO   - ==> Dataset: MiniImageNet_val [2000 batches]
+2019-01-08 15:57:41,031 - algorithms.Algorithm - INFO   - ==> Results: {'loss': 1.8752, 'AccuracyNovel_cnf': 0.3763}
+2019-01-08 15:57:41,032 - algorithms.Algorithm - INFO   - ==> Evaluation stats: {'loss': 1.8752, 'AccuracyNovel_cnf': 0.3763}
+2019-01-08 15:57:41,032 - algorithms.Algorithm - INFO   - ==> Best results w.r.t. AccuracyNovel_cnf metric: epoch: 22 - {'loss': 1.8966, 'AccuracyNovel_cnf': 0.3773}
