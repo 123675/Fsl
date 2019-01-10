@@ -33,7 +33,7 @@ class FewShot(Algorithm):
         self.nKbase = torch.LongTensor()
         self.activate_dropout = (
             opt['activate_dropout'] if ('activate_dropout' in opt) else False)
-        self.keep_best_model_metric_name = 'AccuracyNovel_cnf'
+        self.keep_best_model_metric_name = 'AccuracyNovel'
 
     def allocate_tensors(self):
         self.tensors = {}
@@ -52,7 +52,7 @@ class FewShot(Algorithm):
             train_test_stage = 'fewshot'
             assert(len(batch) == 6)
             images_train, labels_train, images_test, labels_test, K, nKbase = batch
-            self.nKbase = nKbase.squeeze()[0].item()
+            self.nKbase = nKbase.squeeze().item()
             self.tensors['images_train'].resize_(images_train.size()).copy_(images_train)
             self.tensors['labels_train'].resize_(labels_train.size()).copy_(labels_train)
             labels_train = self.tensors['labels_train']
@@ -93,7 +93,6 @@ class FewShot(Algorithm):
                 do_train=do_train)
         else:
             raise ValueError('Unexpected process type {0}'.format(process_type))
-
         return record
 
     def process_batch_base_category_classification(self, do_train=True):
@@ -138,7 +137,7 @@ class FewShot(Algorithm):
         loss_total = loss_cls_all
         loss_record['loss'] = loss_total.item()
         loss_record['AccuracyBase'] = top1accuracy(
-            cls_scores_var.data, labels_test_var.data)
+            cls_scores_var.data, labels_test_var.data).item()
         #***********************************************************************
 
         #***********************************************************************
@@ -181,12 +180,12 @@ class FewShot(Algorithm):
         #***********************************************************************
         #*********************** SET TORCH VARIABLES ***************************
         is_volatile =  (not do_train or not do_train_feat_model)
-        #images_test_var = Variable(images_test, volatile=is_volatile)
+        images_test_var = Variable(images_test, volatile=is_volatile)
         labels_test_var = Variable(labels_test, requires_grad=False)
         Kbase_var = (None if (nKbase==0) else
             Variable(Kids[:,:nKbase].contiguous(),requires_grad=False))
         labels_train_1hot_var = Variable(labels_train_1hot, requires_grad=False)
-        #images_train_var = Variable(images_train, volatile=is_volatile)
+        images_train_var = Variable(images_train, volatile=is_volatile)
         #***********************************************************************
 
         loss_record = {}
@@ -239,7 +238,7 @@ class FewShot(Algorithm):
 
         if self.nKbase > 0:
             loss_record['AccuracyBoth'] = top1accuracy(
-                cls_scores_var.data, labels_test_var.data)
+                cls_scores_var.data, labels_test_var.data).item()
 
             preds_data = cls_scores_var.data.cpu()
             labels_test_data = labels_test_var.data.cpu()
@@ -249,12 +248,12 @@ class FewShot(Algorithm):
             preds_novel = preds_data[novel_ids,:]
 
             loss_record['AccuracyBase'] = top1accuracy(
-                preds_base[:,:nKbase], labels_test_data[base_ids])
+                preds_base[:,:nKbase], labels_test_data[base_ids]).item()
             loss_record['AccuracyNovel'] = top1accuracy(
-                preds_novel[:,nKbase:], (labels_test_data[novel_ids]-nKbase))
+                preds_novel[:,nKbase:], (labels_test_data[novel_ids]-nKbase)).item()
         else:
             loss_record['AccuracyNovel'] = top1accuracy(
-                cls_scores_var.data, labels_test_var.data)
+                cls_scores_var.data, labels_test_var.data).item()
         #***********************************************************************
         
         #***********************************************************************
@@ -277,5 +276,5 @@ class FewShot(Algorithm):
                 ci95 = 1.96*stds/np.sqrt(self.bnumber)
                 loss_record['AccuracyNovel_std'] = stds
                 loss_record['AccuracyNovel_cnf'] = ci95
-
+        
         return loss_record

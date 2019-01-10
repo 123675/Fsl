@@ -31,7 +31,7 @@ class Algorithm():
         self.curr_epoch = 0
         self.optimizers = {}
         self.keep_best_model_metric_name = (
-            opt['best_metric'] + "_cnf" if ('best_metric' in opt) else None)
+            opt['best_metric'] if ('best_metric' in opt) else None)
 
     def set_experiment_dir(self,directory_path):
         self.exp_dir = directory_path
@@ -331,7 +331,6 @@ class Algorithm():
             self.biter = idx
             eval_stats_this = self.evaluation_step(batch)
             eval_stats.update(eval_stats_this)
-
         self.logger.info('==> Results: %s' % eval_stats.average())
 
         return eval_stats.average()
