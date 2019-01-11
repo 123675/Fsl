@@ -52,11 +52,11 @@ class FewShot(Algorithm):
             train_test_stage = 'fewshot'
             assert(len(batch) == 6)
             images_train, labels_train, images_test, labels_test, K, nKbase = batch
-            self.nKbase = nKbase.squeeze().item()
+            self.nKbase = nKbase[0].item() if type(nKbase) != int else nKbase
             self.tensors['images_train'].resize_(images_train.size()).copy_(images_train)
             self.tensors['labels_train'].resize_(labels_train.size()).copy_(labels_train)
             labels_train = self.tensors['labels_train']
-            nKnovel = 1 + labels_train.max() - self.nKbase
+            nKnovel = 1 + labels_train.max().item() - self.nKbase
 
             labels_train_1hot_size = list(labels_train.size()) + [nKnovel,]
             labels_train_unsqueeze = labels_train.unsqueeze(dim=labels_train.dim())
